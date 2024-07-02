@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f0051;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 50%;
+}
+
+.tvshow{
+    background-color: white;
+    color: #5823bc;
+    border-radius: 1%;
+}
+
+.tvshow img {
+    width: 100%;
+}
+
+.desc {
+    padding: 2%;
+}
+
+h1 {
+    text-align: left;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    margin: 1% 0;
+    border-radius: 10px;
+    height: 60px;
+}
+
+.reviews > input {
+    margin: 1% 0;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.reviews > button {
+    margin: 1% 0;
+    border-radius: 10px;
+    height: 30px;
+    display: block;
+}
+
+.reviews {
+    width: 100%;
+    justify-content: left;
+}
+
+.review {
+    background-color: #381484;
+    padding: 1rem 3rem;
+    margin: 2% 0;
+    border-radius: 15px;
+}
+
+
+

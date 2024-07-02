@@ -1,36 +1,40 @@
 <html>
     <head>
         <title>TV Shows App</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div>
+        <div class="container">
             <h1>TV Shows</h1>
             
-            <div>
-                <img src="../img/game-of-thrones.jpg">
-                <h1>Game Of Thrones</h1>
-                <p>
-                    Game of Thrones is roughly based on the storylines of the A Song of Ice and Fire book series by George R. R. Martin, 
-                    set in the fictional Seven Kingdoms of Westeros and the continent of Essos. The series follows several simultaneous 
-                    plot lines. The first story arc follows a war of succession among competing claimants for control of the Iron Throne 
-                    of the Seven Kingdoms, with other noble families fighting for independence from the throne. The second concerns the 
-                    exiled scion's actions to reclaim the throne; the third chronicles the threat of the impending winter, as well as the 
-                    legendary creatures and fierce peoples of the North.
-                </p>
+            <div class="tvshow">
+                <img src="../img/game-of-thrones.jpg" width="800px">
+
+                <div class="desc">
+                    <h2>Game Of Thrones</h2>
+                    <p>
+                        Game of Thrones is roughly based on the storylines of the A Song of Ice and Fire book series by George R. R. Martin, 
+                        set in the fictional Seven Kingdoms of Westeros and the continent of Essos. The series follows several simultaneous 
+                        plot lines. The first story arc follows a war of succession among competing claimants for control of the Iron Throne 
+                        of the Seven Kingdoms, with other noble families fighting for independence from the throne. The second concerns the 
+                        exiled scion's actions to reclaim the throne; the third chronicles the threat of the impending winter, as well as the 
+                        legendary creatures and fierce peoples of the North.
+                    </p>
+                </div>
             </div>
 
-            <div>
-                <h1>Reviews</h1>
+            <div class="reviews">
+                <h2>Reviews</h2>
                 <textarea type="text" name="review" placeholder="Add review"></textarea>
                 <input type="number" name="rating" placeholder="Add rating">
                 <button>Post</button>
 
-                <div>
+                <div class="review">
                     <p>Great series</p>
                     <p>5/5</p>
                 </div>
 
-                <div>
+                <div class="review">
                     <p>They can did it better</p>
                     <p>3/5</p>
                 </div>
