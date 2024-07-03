@@ -1,13 +1,24 @@
-const mockReviews = [
-    {
-        description: 'Great series',
-        rating: 5
-    },
-    {
-        description: 'They can did it better',
-        rating: 3
-    },   
+let mockReviews = [
+    // {
+    //     description: 'Great series',
+    //     rating: 5
+    // },
+    // {
+    //     description: 'They can did it better',
+    //     rating: 3
+    // },   
 ];
+
+function saveToLocalStorage(reviewList) {
+    const reviewListString = JSON.stringify(reviewList);
+    localStorage.setItem('review-list', reviewListString);
+}
+
+function loadFromLocalStorage() {
+    const reviewListString = localStorage.getItem('review-list');
+    const reviewList = JSON.parse(reviewListString);
+    return reviewList;
+}
 
 function renderReviewList() {
     const reviewListElement = document.getElementById('reviewList');
@@ -16,6 +27,8 @@ function renderReviewList() {
     mockReviews.forEach((review) => {
         reviewListElement.appendChild(createReviewItem(review));
     });
+
+    saveToLocalStorage(mockReviews);
 }
 
 function createReviewItem(review) {
@@ -29,6 +42,11 @@ function createReviewItem(review) {
     const reviewItemRatingElement = document.createElement('span');
     reviewItemRatingElement.textContent = review.rating + "/5";
     reviewItemElement.appendChild(reviewItemRatingElement);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Remove';
+    reviewItemElement.appendChild(deleteButton);
+
     return reviewItemElement;
 }
 
@@ -51,4 +69,5 @@ const postButtonHandler = () => {
     newReviewRatingInput.value = '';
 };
 
+mockReviews = loadFromLocalStorage();
 renderReviewList();
