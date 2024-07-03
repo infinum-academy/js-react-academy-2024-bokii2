@@ -45,6 +45,12 @@ function createReviewItem(review) {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Remove';
+    deleteButton.onclick = () => {
+        mockReviews = mockReviews.filter((t) => {
+            return t !== review;
+        });
+        renderReviewList();
+    };
     reviewItemElement.appendChild(deleteButton);
 
     return reviewItemElement;
