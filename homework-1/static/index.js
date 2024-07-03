@@ -8,6 +8,7 @@ let mockReviews = [
     //     rating: 3
     // },   
 ];
+let selectedStars = 0;
 
 function saveToLocalStorage(reviewList) {
     const reviewListString = JSON.stringify(reviewList);
@@ -44,6 +45,12 @@ function createReviewItem(review) {
     reviewItemRatingElement.textContent = review.rating + "/5";
     reviewItemElement.appendChild(reviewItemRatingElement);
 
+    // Stars in the review
+    const reviewStarsElement  = document.createElement('div');
+    reviewStarsElement.classList = ['stars']
+    reviewStarsElement.innerHTML = showStars(review.rating);
+    reviewItemElement.appendChild(reviewStarsElement);
+
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Remove';
     deleteButton.onclick = () => {
@@ -57,12 +64,25 @@ function createReviewItem(review) {
     return reviewItemElement;
 }
 
+function showStars(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < rating) {
+            stars += '<span class="selected">&starf;</span>';
+        } else {
+            stars += '<span class="star">&starf;</span>';
+        }
+    }
+    return stars;
+}
+
 const postButtonHandler = () => {
     const newReviewDescInput = document.getElementById('reviewDesc');
     const newReviewDesc = newReviewDescInput.value;
 
-    const newReviewRatingInput = document.getElementById('reviewRating');
-    const newReviewRating = newReviewRatingInput.value;
+    // const newReviewRatingInput = document.getElementById('reviewRating');
+    // const newReviewRating = newReviewRatingInput.value;
+    const newReviewRating = selectedStars;
     
     const newReview = {
         description: newReviewDesc,
@@ -73,7 +93,9 @@ const postButtonHandler = () => {
     renderReviewList();
 
     newReviewDescInput.value = '';
-    newReviewRatingInput.value = '';
+    // newReviewRatingInput.value = '';
+    selectedStars = 0;
+    removeStars();
 };
 
 function calculateRating() {
@@ -88,6 +110,31 @@ function calculateRating() {
 
     const rat = document.getElementById('rat');
     rat.innerText = averageRating + '/5';
+}
+
+function starRating(n) {
+    let stars = document.getElementsByClassName('star');
+    selectedStars = n;
+
+    remove();
+    for(let i = 0; i < n; i++) {
+        stars[i].className = "star selected";
+    }
+
+    function remove() {
+        let i = 0;
+        while (i < 5) {
+            stars[i].className = "star";
+            i++;
+        }
+    }
+}
+
+function removeStars() {
+    let stars = document.getElementsByClassName('star');
+    for (let i = 0; i < stars.length; i++) {
+        stars[i].className = "star";
+    }
 }
 
 mockReviews = loadFromLocalStorage();
