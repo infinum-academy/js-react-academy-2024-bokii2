@@ -25,20 +25,17 @@
 
             <div class="reviews">
                 <h2>Reviews</h2>
-                <textarea type="text" name="review" placeholder="Add review"></textarea>
-                <input type="number" name="rating" placeholder="Add rating">
-                <button>Post</button>
-
-                <div class="review">
-                    <p>Great series</p>
-                    <p>5/5</p>
+                <div class="reviewForm">
+                    <textarea id="reviewDesc" type="text" name="review" placeholder="Add review"></textarea>
+                    <input id="reviewRating" type="number" name="rating" placeholder="Add rating">
+                    <button onclick="postButtonHandler()">Post</button>
                 </div>
 
-                <div class="review">
-                    <p>They can did it better</p>
-                    <p>3/5</p>
+                <div id="reviewList">
+                    
                 </div>
             </div>
         </div>
+        <script src="index.js"></script>
     </body>
 </html>

@@ -13,21 +13,23 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-width: 50%;
+    max-width: 60%;
 }
 
 .tvshow{
     background-color: white;
-    color: #5823bc;
-    border-radius: 1%;
+    color: #5823bc; 
+    border-radius: 10px;
 }
 
 .tvshow img {
     width: 100%;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .desc {
-    padding: 2%;
+    padding: 2rem;
 }
 
 h1 {
@@ -42,13 +44,13 @@ textarea {
     height: 60px;
 }
 
-.reviews > input {
+.reviewForm > input {
     margin: 1% 0;
     border-radius: 10px;
     height: 40px;
 }
 
-.reviews > button {
+.reviewForm > button {
     margin: 1% 0;
     border-radius: 10px;
     height: 30px;
@@ -62,6 +64,9 @@ textarea {
 
 .review {
     background-color: #381484;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 1rem 3rem;
     margin: 2% 0;
     border-radius: 15px;
