@@ -42,6 +42,7 @@ textarea {
     margin: 1% 0;
     border-radius: 10px;
     height: 60px;
+    font-family: Arial, sans-serif;
 }
 
 .reviewForm > input {

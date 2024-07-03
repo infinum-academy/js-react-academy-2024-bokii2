@@ -29,6 +29,7 @@ function renderReviewList() {
     });
 
     saveToLocalStorage(mockReviews);
+    calculateRating();
 }
 
 function createReviewItem(review) {
@@ -62,10 +63,15 @@ const postButtonHandler = () => {
 
     const newReviewRatingInput = document.getElementById('reviewRating');
     const newReviewRating = newReviewRatingInput.value;
+
+    if(newReviewRating > 5) {
+        alert('Rating is greater than 5');
+        return;
+    }
     
     const newReview = {
         description: newReviewDesc,
-        rating: newReviewRating
+        rating: parseInt(newReviewRating, 10)
     }
 
     mockReviews.push(newReview);
@@ -74,6 +80,20 @@ const postButtonHandler = () => {
     newReviewDescInput.value = '';
     newReviewRatingInput.value = '';
 };
+
+function calculateRating() {
+    const desc = document.getElementsByClassName('desc');
+    let total = 0;
+
+    mockReviews.forEach(review => {
+        total += review.rating;
+    })
+
+    const averageRating = (total / mockReviews.length).toFixed(2);
+
+    const rat = document.getElementById('rat');
+    rat.innerText = averageRating + '/5';
+}
 
 mockReviews = loadFromLocalStorage();
 renderReviewList();
