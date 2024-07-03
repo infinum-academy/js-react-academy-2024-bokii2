@@ -63,11 +63,6 @@ const postButtonHandler = () => {
 
     const newReviewRatingInput = document.getElementById('reviewRating');
     const newReviewRating = newReviewRatingInput.value;
-
-    if(newReviewRating > 5) {
-        alert('Rating is greater than 5');
-        return;
-    }
     
     const newReview = {
         description: newReviewDesc,

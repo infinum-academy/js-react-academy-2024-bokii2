@@ -46,6 +46,7 @@ textarea {
 }
 
 .reviewForm > input {
+    width: 7rem;
     margin: 1% 0;
     border-radius: 10px;
     height: 40px;
