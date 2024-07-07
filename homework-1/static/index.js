@@ -1,35 +1,31 @@
-let mockReviews = [
-    // {
-    //     description: 'Great series',
-    //     rating: 5
-    // },
-    // {
-    //     description: 'They can did it better',
-    //     rating: 3
-    // },   
-];
+let reviewsList = [];
 let selectedStars = 0;
 
 function saveToLocalStorage(reviewList) {
-    const reviewListString = JSON.stringify(reviewList);
-    localStorage.setItem('review-list', reviewListString);
+    if(reviewList.length > 0) {
+        const reviewListString = JSON.stringify(reviewList);
+        localStorage.setItem('review-list', reviewListString);
+    } else {
+        localStorage.removeItem('review-list');
+    }
+    
 }
 
 function loadFromLocalStorage() {
     const reviewListString = localStorage.getItem('review-list');
     const reviewList = JSON.parse(reviewListString);
-    return reviewList;
+    return reviewList ?? [];
 }
 
 function renderReviewList() {
     const reviewListElement = document.getElementById('reviewList');
     
     reviewListElement.innerHTML = '';
-    mockReviews.forEach((review) => {
+    reviewsList.forEach((review) => {
         reviewListElement.appendChild(createReviewItem(review));
     });
 
-    saveToLocalStorage(mockReviews);
+    saveToLocalStorage(reviewsList);
     calculateRating();
 }
 
@@ -54,14 +50,20 @@ function createReviewItem(review) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Remove';
     deleteButton.onclick = () => {
-        mockReviews = mockReviews.filter((t) => {
-            return t !== review;
-        });
-        renderReviewList();
+        removeReview(review, reviewItemElement);
     };
     reviewItemElement.appendChild(deleteButton);
 
     return reviewItemElement;
+}
+
+const removeReview = (review, reviewItemElement) => {
+    reviewItemElement.remove();
+    reviewsList = reviewsList.filter((t) => {
+        return t !== review;
+    });
+    saveToLocalStorage(reviewsList);
+    calculateRating();
 }
 
 function showStars(rating) {
@@ -80,8 +82,6 @@ const postButtonHandler = () => {
     const newReviewDescInput = document.getElementById('reviewDesc');
     const newReviewDesc = newReviewDescInput.value;
 
-    // const newReviewRatingInput = document.getElementById('reviewRating');
-    // const newReviewRating = newReviewRatingInput.value;
     const newReviewRating = selectedStars;
     
     const newReview = {
@@ -89,27 +89,38 @@ const postButtonHandler = () => {
         rating: parseInt(newReviewRating, 10)
     }
 
-    mockReviews.push(newReview);
-    renderReviewList();
+    if(newReview.description == "" || newReview.rating == 0) {
+        alert("Please, fill all the inputs");
+        return;
+    }
+
+    reviewsList.push(newReview);
+    addNew(newReview);
+    saveToLocalStorage(reviewsList);
+    calculateRating();
 
     newReviewDescInput.value = '';
-    // newReviewRatingInput.value = '';
     selectedStars = 0;
     removeStars();
 };
+
+const addNew = (review) => {
+    const reviewListElement = document.getElementById('reviewList');
+    reviewListElement.appendChild(createReviewItem(review));
+}
 
 function calculateRating() {
     const desc = document.getElementsByClassName('desc');
     let total = 0;
 
-    mockReviews.forEach(review => {
+    reviewsList.forEach(review => {
         total += review.rating;
     })
 
-    const averageRating = (total / mockReviews.length).toFixed(2);
+    const averageRating = (total / reviewsList.length).toFixed(2);
 
     const rat = document.getElementById('rat');
-    rat.innerText = averageRating + '/5';
+    rat.innerText = (reviewsList.length ? averageRating : '0') + '/5';
 }
 
 function starRating(n) {
@@ -137,5 +148,5 @@ function removeStars() {
     }
 }
 
-mockReviews = loadFromLocalStorage();
+reviewsList = loadFromLocalStorage();
 renderReviewList();

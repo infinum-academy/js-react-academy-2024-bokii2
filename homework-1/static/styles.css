@@ -10,10 +10,9 @@ body {
 }
 
 .container {
-    display: flex;
     align-items: center;
-    flex-direction: column;
-    max-width: 60%;
+    width: 920px;
+    max-width: 100%;
 }
 
 .tvshow{
@@ -34,33 +33,30 @@ body {
 
 h1 {
     text-align: left;
-    width: 100%;
 }
 
 textarea {
-    width: 100%;
-    margin: 1% 0;
+    width: 920px;
+    padding: 15px;
+    margin: 10px 0;
     border-radius: 10px;
     height: 60px;
     font-family: Arial, sans-serif;
 }
 
-.reviewForm > input {
-    width: 7rem;
-    margin: 1% 0;
-    border-radius: 10px;
-    height: 40px;
+.reviewForm {
+    width: 920px;
 }
 
 .reviewForm > button {
-    margin: 1% 0;
+    margin: 10px 0;
     border-radius: 20px;
     padding: 0.5em 1em;
     display: block;
 }
 
 .reviews {
-    width: 100%;
+    width: 920px;
     justify-content: left;
 }
 
@@ -81,10 +77,12 @@ textarea {
 }
 
 #starRating {
-    width: 35%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+#starRating > span {
+    margin-right: 30px;
 }
 
 .stars {

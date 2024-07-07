@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>TV Shows App</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css" >
+        <link rel="icon" type="image/x-icon" href="../img/favicon-32x32.png">
     </head>
     <body>
         <div class="container">
@@ -28,15 +29,14 @@
                 <h2>Reviews</h2>
                 <div class="reviewForm">
                     <textarea id="reviewDesc" type="text" name="review" placeholder="Add review"></textarea>
-                    <!-- <input id="reviewRating" type="number" name="rating" placeholder="Add rating" min="0" max="5"> -->
                     <div id="starRating">
                         <span>Rating</span>
                         <div class="stars">
                             <span onclick="starRating(1)" class="star">&starf;</span>
-                            <span onclick="starRating(2)" class="star" value="2">&starf;</span>
-                            <span onclick="starRating(3)" class="star" value="3">&starf;</span>
-                            <span onclick="starRating(4)" class="star" value="4">&starf;</span>
-                            <span onclick="starRating(5)" class="star" value="5">&starf;</span>
+                            <span onclick="starRating(2)" class="star">&starf;</span>
+                            <span onclick="starRating(3)" class="star">&starf;</span>
+                            <span onclick="starRating(4)" class="star">&starf;</span>
+                            <span onclick="starRating(5)" class="star">&starf;</span>
                         </div>
                     </div>
                     <button onclick="postButtonHandler()">Post</button>
