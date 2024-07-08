@@ -20,7 +20,6 @@ function loadFromLocalStorage() {
 function renderReviewList() {
     const reviewListElement = document.getElementById('reviewList');
     
-    reviewListElement.innerHTML = '';
     reviewsList.forEach((review) => {
         reviewListElement.appendChild(createReviewItem(review));
     });
