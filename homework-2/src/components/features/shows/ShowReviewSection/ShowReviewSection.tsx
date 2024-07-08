@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardBody, CardHeader, Heading } from "@chakra-ui/react"
+import { Card, CardBody, CardHeader, Flex, Heading } from "@chakra-ui/react"
 import { ReviewForm } from "../ReviewForm/ReviewForm"
 import { ReviewList } from "../../review/ReviewList/ReviewList"
 import { IReview, IReviewList } from "@/typings/Review.type"
@@ -65,16 +65,27 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
     }
 
     return (
-        <Card backgroundColor='inherit'>
-            <CardHeader>
-                <Heading as='h3' size='lg' color='white'>
+        <Flex backgroundColor='inherit' max-width='920px' direction='column' align='left' margin='10px 0' gap={10}>
+            {/* <CardHeader> */}
+                <Heading as='h3' size='lg' color='white' alignItems='left'>
                     Reviews
                 </Heading>
-            </CardHeader>
-            <CardBody>
+            {/* </CardHeader> */}
+            {/* <CardBody> */}
                 <ReviewForm addShowReview={onAddReview} />
                 <ReviewList reviewList={reviewsList} deleteReview={onDeleteReview} />
-            </CardBody>
-        </Card>
+            {/* </CardBody> */}
+        </Flex>
+        // <Card backgroundColor='inherit'>
+        //     <CardHeader>
+        //         <Heading as='h3' size='lg' color='white'>
+        //             Reviews
+        //         </Heading>
+        //     </CardHeader>
+        //     <CardBody>
+        //         <ReviewForm addShowReview={onAddReview} />
+        //         <ReviewList reviewList={reviewsList} deleteReview={onDeleteReview} />
+        //     </CardBody>
+        // </Card>
     )
 }

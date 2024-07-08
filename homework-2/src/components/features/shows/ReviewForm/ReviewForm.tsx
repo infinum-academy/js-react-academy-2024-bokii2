@@ -23,9 +23,10 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
     }
 
     return (
-        <Container width='inherit' margin='15px 0'>
-            <Textarea backgroundColor='white' color='black' id="comment-input"/>
-            <NumberInput defaultValue={0} min={0} max={5} step={1} id="rating-input" >
+        //  margin='15px 0'
+        <Container  maxWidth='inherit'>
+            <Textarea backgroundColor='white' color='black' id="comment-input" width='100%'/>
+            <NumberInput defaultValue={0} min={0} max={5} step={1} id="rating-input" width='fit-content'>
                 <NumberInputField  backgroundColor='white' color='black' />
                 <NumberInputStepper>
                     <NumberIncrementStepper />
