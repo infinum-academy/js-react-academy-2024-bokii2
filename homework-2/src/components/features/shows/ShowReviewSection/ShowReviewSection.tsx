@@ -22,6 +22,10 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
         setReviewsList(loadedFromLS);
     }, []);
 
+    useEffect(() => {
+        setAvgRating(calcAvgRating(reviewsList.reviews));
+    }, [reviewsList, setAvgRating]);
+
     const saveToLocalStorage = (reviewsList: IReviewList) => {
         localStorage.setItem('review-list', JSON.stringify(reviewsList));
     };
@@ -59,8 +63,6 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
 
         return Number((sum / reviews.length).toFixed(2));
     }
-
-    setAvgRating(calcAvgRating(reviewsList.reviews));
 
     return (
         <Card backgroundColor='inherit'>
