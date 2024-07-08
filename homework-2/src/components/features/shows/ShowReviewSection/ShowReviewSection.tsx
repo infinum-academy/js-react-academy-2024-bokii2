@@ -6,11 +6,15 @@ import { ReviewList } from "../../review/ReviewList/ReviewList"
 import { IReview, IReviewList } from "@/typings/Review.type"
 import { useEffect, useState } from "react"
 
+interface IShowReviewSectionProps {
+    setAvgRating: (avg: number) => void;
+}
+
 const reviewList: IReviewList = {
     reviews: []
 }
 
-export const ShowReviewSection = () => {
+export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
     const [reviewsList, setReviewsList] = useState(reviewList);
 
     useEffect(() => {
@@ -46,17 +50,17 @@ export const ShowReviewSection = () => {
         saveToLocalStorage(newList);
     }
 
-    const calcAvgRating = (reviews: IReview[]) => {
+    let calcAvgRating = (reviews: IReview[]) => {
         let sum = 0;
 
         reviews.forEach((review) => {
             sum += review.rating;
         });
 
-        return (sum / reviews.length).toFixed(2);
+        return Number((sum / reviews.length).toFixed(2));
     }
 
-    calcAvgRating(reviewsList.reviews);
+    setAvgRating(calcAvgRating(reviewsList.reviews));
 
     return (
         <Card backgroundColor='inherit'>
