@@ -27,13 +27,17 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
     }, [reviewsList, setAvgRating]);
 
     const saveToLocalStorage = (reviewsList: IReviewList) => {
-        localStorage.setItem('review-list', JSON.stringify(reviewsList));
+        if(reviewsList.reviews.length > 0){
+            localStorage.setItem('review-list', JSON.stringify(reviewsList));
+        } else {
+            localStorage.removeItem('review-list');
+        }
     };
 
     const loadFromLocalStorage = () => {
         const reviewListString = localStorage.getItem('review-list');
         if(!reviewListString) {
-            return reviewListString;
+            return reviewList;
         }
         return JSON.parse(reviewListString);
     }

@@ -23,7 +23,7 @@ export const ShowContainer = () => {
 
 
     return (
-        <Flex flexDirection='column' alignItems='left'>
+        <Flex flexDirection='column' alignItems='left' width='fit-content'>
             <ShowDetails show={someShow} avgRating={averageRating} />
             <ShowReviewSection setAvgRating={setAverageRating} />
         </Flex>
