@@ -3,8 +3,7 @@
 import { useState } from "react"
 import { ShowDetails } from "../ShowDetails/ShowDetails"
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection"
-import { IReview } from "@/typings/Review.type"
-import { Flex } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 
 const someShow = {
     title: "Game Of Thrones",
@@ -24,6 +23,7 @@ export const ShowContainer = () => {
 
     return (
         <Flex flexDirection='column' alignItems='left' width='fit-content'>
+            <Heading as='h3' size='lg' marginBottom='10px'>TV Shows App</Heading>
             <ShowDetails show={someShow} avgRating={averageRating} />
             <ShowReviewSection setAvgRating={setAverageRating} />
         </Flex>

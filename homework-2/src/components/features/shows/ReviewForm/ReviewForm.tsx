@@ -1,5 +1,5 @@
 import { IReview } from "@/typings/Review.type"
-import { Button, Container, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Textarea } from "@chakra-ui/react"
+import { Button, Container, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Textarea } from "@chakra-ui/react"
 
 interface IReviewFormProps {
     addShowReview: (review: IReview) => void;
@@ -13,6 +13,11 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
         const ratingInput = document.getElementById('rating-input') as HTMLInputElement;
         const newRating = ratingInput.value;
 
+        if(!newComment || newRating == '0') {
+            alert("Please fill all the inputs!");
+            return;
+        }
+
         const newReview: IReview = {
             comment: newComment,
             rating: Number(newRating)
@@ -20,20 +25,20 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
 
         addShowReview(newReview);
         commentInput.value = '';
+        ratingInput.value = '0';
     }
 
     return (
-        //  margin='15px 0'
         <Container  maxWidth='inherit'>
             <Textarea backgroundColor='white' color='black' id="comment-input" width='100%'/>
-            <NumberInput defaultValue={0} min={0} max={5} step={1} id="rating-input" width='fit-content'>
-                <NumberInputField  backgroundColor='white' color='black' />
+            <NumberInput defaultValue={0} min={0} max={5} step={1} width='fit-content' margin='15px 0'>
+                <NumberInputField  backgroundColor='white' color='black' id="rating-input" />
                 <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />
                 </NumberInputStepper>
             </NumberInput>
-            <Button onClick={onClickHandler}>Post</Button>
+            <Button onClick={onClickHandler} borderRadius='20px' padding='0 25px'>Post</Button>
         </Container>
     )
 }

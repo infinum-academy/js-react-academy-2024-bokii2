@@ -1,5 +1,5 @@
 import { IReview, IReviewList } from "@/typings/Review.type";
-import { Container, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 
 interface IReviewListProps {

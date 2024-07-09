@@ -1,6 +1,5 @@
 import { IShow } from "@/typings/Show.type";
 import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
-import { useState } from "react";
 
 interface IShowProps {
     show: IShow;
