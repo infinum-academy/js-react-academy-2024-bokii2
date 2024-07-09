@@ -8,9 +8,11 @@ interface IReviewListProps {
 }
 
 export const ReviewList = ({reviewList, deleteReview}: IReviewListProps) => {
+    console.log('reviewList', reviewList);
+    
     return (
         <Flex direction='column' >
-            {reviewList.reviews.map((review, index) => {
+            {reviewList.map((review, index) => {
                 return (
                     <ReviewItem review={review} key={index} onDeleteReview={deleteReview} />
                 );
