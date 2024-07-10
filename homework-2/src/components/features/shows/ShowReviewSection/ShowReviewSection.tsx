@@ -18,6 +18,7 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
 
         setAvgRating(calcAvgRating(loadedFromLS));
         setReviewsList(loadedFromLS);
+        setAvgRating(calcAvgRating(loadedFromLS));
     }, []);
 
     const saveToLocalStorage = (reviewsList: IReview[]) => {
@@ -43,7 +44,7 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
 
     const onDeleteReview = (reviewToRemove: IReview) => {
         const newList = reviewsList.filter((review) => review !== reviewToRemove);
-
+        
         setReviewsList(newList);
         saveToLocalStorage(newList);
         setAvgRating(calcAvgRating(newList));
