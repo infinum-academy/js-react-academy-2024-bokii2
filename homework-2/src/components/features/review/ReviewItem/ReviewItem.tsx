@@ -1,5 +1,6 @@
 import { IReview } from "@/typings/Review.type"
 import { Button, Card, CardBody, Text } from "@chakra-ui/react"
+import { StarsRating } from "../../shows/ReviewForm/StarsRating/StarsRating";
 
 interface IReviewItemProps {
     review: IReview;
@@ -12,7 +13,8 @@ export const ReviewItem = ({review, onDeleteReview}: IReviewItemProps) => {
             <CardBody margin='10px' marginLeft='20px'>
                 <Text>{review.comment}</Text>
                 <Text margin='10px 0'>{review.rating} / 5</Text>
-                <Button borderRadius={20} onClick={() => onDeleteReview(review)}>Remove</Button>
+                <StarsRating rating={review.rating} setRating={() => {}} read />
+                <Button borderRadius={20} onClick={() => onDeleteReview(review)} mt='10px' >Remove</Button>
             </CardBody>
         </Card>
     )
