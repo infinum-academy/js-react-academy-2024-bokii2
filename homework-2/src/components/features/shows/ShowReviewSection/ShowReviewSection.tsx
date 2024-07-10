@@ -3,31 +3,25 @@
 import { Flex, Heading } from "@chakra-ui/react"
 import { ReviewForm } from "../ReviewForm/ReviewForm"
 import { ReviewList } from "../../review/ReviewList/ReviewList"
-import { IReview, IReviewList } from "@/typings/Review.type"
+import { IReview } from "@/typings/Review.type"
 import { useEffect, useState } from "react"
 
 interface IShowReviewSectionProps {
     setAvgRating: (avg: number) => void;
 }
 
-const reviewList: IReviewList = {
-    reviews: []
-}
-
 export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
-    const [reviewsList, setReviewsList] = useState(reviewList);
+    const [reviewsList, setReviewsList] = useState<IReview[]>([]);
 
     useEffect(() => {
         const loadedFromLS = loadFromLocalStorage();
+
+        setAvgRating(calcAvgRating(loadedFromLS));
         setReviewsList(loadedFromLS);
     }, []);
 
-    useEffect(() => {
-        setAvgRating(calcAvgRating(reviewsList.reviews));
-    }, [reviewsList, setAvgRating]);
-
-    const saveToLocalStorage = (reviewsList: IReviewList) => {
-        if(reviewsList.reviews.length > 0){
+    const saveToLocalStorage = (reviewsList: IReview[]) => {
+        if(reviewsList.length > 0){
             localStorage.setItem('review-list', JSON.stringify(reviewsList));
         } else {
             localStorage.removeItem('review-list');
@@ -36,26 +30,23 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
 
     const loadFromLocalStorage = () => {
         const reviewListString = localStorage.getItem('review-list');
-        if(!reviewListString) {
-            return reviewList;
-        }
-        return JSON.parse(reviewListString);
+        return reviewListString ? JSON.parse(reviewListString) : [];
     }
 
     const onAddReview = (review: IReview) => {
-        const newList = {
-            reviews: [...reviewsList.reviews, review]
-        }
+        const newList = [...reviewsList, review];
+
         setReviewsList(newList);
         saveToLocalStorage(newList);
+        setAvgRating(calcAvgRating(newList));
     }
 
     const onDeleteReview = (reviewToRemove: IReview) => {
-        const newList = {
-            reviews: reviewsList.reviews.filter((review) => review !== reviewToRemove)
-        };
+        const newList = reviewsList.filter((review) => review !== reviewToRemove);
+
         setReviewsList(newList);
         saveToLocalStorage(newList);
+        setAvgRating(calcAvgRating(newList));
     }
 
     let calcAvgRating = (reviews: IReview[]) => {

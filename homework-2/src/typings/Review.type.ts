@@ -3,6 +3,7 @@ export interface IReview {
     comment: string;
 }
 
-export interface IReviewList {
-    reviews: Array<IReview>;
-}
+// export interface IReviewList {
+//     // reviews: Array<IReview>;
+//     reviews: IReview[];
+// }

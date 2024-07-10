@@ -8,7 +8,7 @@ interface IShowProps {
 
 export const ShowDetails = ({show, avgRating}: IShowProps) => {
     return (
-        <Card width='920px' direction='column' borderRadius='10px' backgroundColor='white' color='#5935bc'>
+        <Card width='100%' direction='column' borderRadius='10px' backgroundColor='white' color='#5935bc'>
             <Image alt="got" src={show.imageUrl} borderTopRadius='inherit' />
             <CardBody padding='30px' marginTop='20px' gap='8px'>
                 <Heading as='h2' size='2xl'>{show.title}</Heading>
