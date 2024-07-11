@@ -1,5 +1,6 @@
 import { IShow } from "@/typings/Show.type"
 import { ShowCard } from "../ShowCard/ShowCard"
+import { Flex } from "@chakra-ui/react";
 
 interface IShowListProps{
     shows: IShow[];
@@ -7,8 +8,12 @@ interface IShowListProps{
 
 export const ShowList = ({shows}: IShowListProps) => {
     return (
-        shows.map((show) => {
-            <ShowCard show={show} />
-        })
+        <Flex>
+            {shows.map((show) => {
+                return (
+                    <ShowCard key={show.id} show={show} />
+                )
+            })}
+        </Flex>
     )
 }

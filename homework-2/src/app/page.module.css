@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 6rem 0;
   width: 920px;
   min-height: 100vh;
+  max-width: 100vw;
   color: white;
   background-color: #280454;
 }

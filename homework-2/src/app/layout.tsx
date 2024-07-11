@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
 import './/global.css'
+import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={inter.className}>
+        <SidebarNavigation />
         <Providers>{children}</Providers>
       </body>
     </html>

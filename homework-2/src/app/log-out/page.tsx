@@ -1,4 +1,4 @@
-export default function TopRated() {
+export default function LogOut() {
     return (
         <></>
     );
