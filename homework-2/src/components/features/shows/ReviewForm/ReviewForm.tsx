@@ -1,7 +1,7 @@
-import { StarsRating } from "@/components/features/shows/ReviewForm/StarsRating/StarsRating"
 import { IReview } from "@/typings/Review.type"
-import { Button, Container, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Textarea } from "@chakra-ui/react"
+import { Button, Container, Flex, Text, Textarea } from "@chakra-ui/react"
 import { useState } from "react";
+import { StarsRating } from "./StarsRating/StarsRating";
 
 interface IReviewFormProps {
     addShowReview: (review: IReview) => void;
@@ -31,14 +31,10 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
     return (
         <Container maxWidth='inherit'>
             <Textarea value={comment} onChange={(e) => setComment(e.target.value)} backgroundColor='white' color='black' width='100%'/>
-            <StarsRating></StarsRating>
-            <NumberInput value={rating} onChange={(value) => setRating(Number(value))} defaultValue={0} min={0} max={5} step={1} width='fit-content' margin='15px 0'>
-                <NumberInputField backgroundColor='white' color='black' />
-                <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                </NumberInputStepper>
-            </NumberInput>
+            <Flex alignItems='center' my={4} >
+                <Text fontSize='2xl' mr={3} >Rating</Text>
+                <StarsRating rating={rating} setRating={setRating} /> 
+            </Flex>
             <Button onClick={onClickHandler} borderRadius='20px' padding='0 25px'>Post</Button>
         </Container>
     )
