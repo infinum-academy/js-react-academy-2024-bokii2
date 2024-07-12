@@ -1,7 +1,7 @@
-import { ShowsList } from "@/components/features/shows/ShowsList/ShowsList";
+import { ShowListContainer } from "@/components/features/shows/ShowListContainer/ShowListContainer";
 
 export default function AllShows() {
     return (
-        <ShowsList />
+        <ShowListContainer />
     );
 }

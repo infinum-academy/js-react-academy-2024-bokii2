@@ -28,7 +28,7 @@ export default function RootLayout({
         <Flex
                 ml="10vw" 
                 width="calc(100vw - 10vw)"
-                padding="6rem 1rem"
+                padding="6rem 0"
                 color="white"
                 backgroundColor="#280454"
                 flexDirection="column"
