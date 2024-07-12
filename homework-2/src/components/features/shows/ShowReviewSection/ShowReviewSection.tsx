@@ -61,12 +61,14 @@ export const ShowReviewSection = ({setAvgRating}: IShowReviewSectionProps) => {
     }
 
     return (
-        <Flex backgroundColor='inherit' max-width='920px' direction='column' align='left' margin='10px 0' gap={10}>
+        <Flex backgroundColor='inherit' max-width='920px' align='left' margin='30px 0' gap={10}>
             <Heading as='h3' size='lg' color='white' alignItems='left'>
                 Reviews
             </Heading>
-            <ReviewForm addShowReview={onAddReview} />
-            <ReviewList reviewList={reviewsList} deleteReview={onDeleteReview} />
+            <Flex direction='column' flexGrow={1}  >
+                <ReviewForm addShowReview={onAddReview} />
+                <ReviewList reviewList={reviewsList} deleteReview={onDeleteReview} />
+            </Flex>
         </Flex>
 
     )

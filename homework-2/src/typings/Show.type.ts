@@ -1,5 +1,5 @@
 export interface IShow {
-    id?: string;
+    id: string;
     title: string;
     description?: string;
     average_rating: number;

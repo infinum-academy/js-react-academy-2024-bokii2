@@ -21,7 +21,6 @@ export const ShowContainer = () => {
 
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
-            <Heading as='h3' size='lg' marginBottom='20px'>TV Shows App</Heading>
             <ShowDetails show={data} avgRating={averageRating} />
             <ShowReviewSection setAvgRating={setAverageRating} />
         </Flex>
