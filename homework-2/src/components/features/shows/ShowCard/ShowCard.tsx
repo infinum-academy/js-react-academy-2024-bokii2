@@ -6,17 +6,15 @@ interface IShowCardProps {
     show: IShow;
 }
 
-// {imageUrl, title, rating}: IShowCardProps
-
 export const ShowCard = ({show}: IShowCardProps) => {
     return (
-        <Card>
-            <CardHeader>
-                <Image alt='title' src={show.imageUrl} />
-            </CardHeader>
+        <Card size='sm'  width='200px' >
+            {/* <CardHeader> */}
+                <Image alt='title' src={show.image_url} width='100%' height='auto' />
+            {/* </CardHeader> */}
             <CardBody>
                 <Heading as={NextLink} href={`/all-shows/${show.id}`} size='md'>{show.title}</Heading>
-                <Heading as='h5' size='sm'>{show.averageRating}</Heading>
+                <Heading as='h5' size='sm'>{show.average_rating}</Heading>
             </CardBody>
         </Card>
     );

@@ -13,8 +13,8 @@ const someShow = {
                   of the Seven Kingdoms, with other noble families fighting for independence from the throne. The second concerns the 
                   exiled scion &apos; actions to reclaim the throne; the third chronicles the threat of the impending winter, as well as the 
                   legendary creatures and fierce peoples of the North.`,
-    averageRating: 0,
-    imageUrl: "game-of-thrones.jpg"
+    average_rating: 0,
+    image_url: "game-of-thrones.jpg"
 }
 
 export const ShowContainer = () => {
@@ -22,7 +22,7 @@ export const ShowContainer = () => {
 
 
     return (
-        <Flex flexDirection='column' alignItems='left' width='100%'>
+        <Flex flexDirection='column' alignItems='left' width='920px'>
             <Heading as='h3' size='lg' marginBottom='20px'>TV Shows App</Heading>
             <ShowDetails show={someShow} avgRating={averageRating} />
             <ShowReviewSection setAvgRating={setAverageRating} />

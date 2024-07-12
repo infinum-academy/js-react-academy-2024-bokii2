@@ -4,6 +4,7 @@ import { Providers } from "./providers";
 
 import './/global.css'
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
+import { Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,17 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <SidebarNavigation />
-        <Providers>{children}</Providers>
+        <Flex
+                ml="10vw" 
+                width="calc(100vw - 10vw)"
+                padding="6rem 1rem"
+                color="white"
+                backgroundColor="#280454"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center">
+          <Providers>{children}</Providers>
+        </Flex>
       </body>
     </html>
   );
