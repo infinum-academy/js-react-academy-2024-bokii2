@@ -1,7 +1,5 @@
-import { getShowDetails } from "@/fetchers/shows";
 import { IShow } from "@/typings/Show.type";
 import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
-import useSWR from "swr";
 
 interface IShowProps {
     show: IShow | undefined;
