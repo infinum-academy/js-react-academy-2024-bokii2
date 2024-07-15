@@ -14,14 +14,14 @@ export const ReviewItem = ({review, onDeleteReview}: IReviewItemProps) => {
             <Flex direction='row' alignItems='center' width='100%' gap={8} ml='10px'>
                 <Image alt="avatar" src='https://i.pravatar.cc/50' borderRadius={15} />
                 <Flex direction='column'>
-                    <Text mb='5px'>{review.email}test@test.com</Text>
+                    <Text mb='5px'>{review.email}</Text>
                     <Flex direction='row'>
-                        <Text mr='10px'>{review.rating} / 5</Text>
+                        <Text mr='10px'>{review.rating + ' / 5'}</Text>
                         <StarsRating rating={review.rating} setRating={() => {}} read />
                     </Flex>
                 </Flex>
                 <Text flexGrow={1}>{review.comment}</Text>
-                <DeleteIcon onClick={() => onDeleteReview(review)} boxSize={7} mr='10px'  />
+                <DeleteIcon onClick={() => onDeleteReview(review)} boxSize={7} mr='10px' data-testid="delete-button" />
                 </Flex>
         </Card>
     )
