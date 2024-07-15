@@ -13,7 +13,7 @@ export const StarsRating = ({rating, setRating, read = false}: IStarsRatingProps
     return (
         <Flex>
             {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} boxSize='2em' onClick={() => !read && setRating(i+1)} color={i < rating ? 'yellow.400' : 'gray.300'} cursor={read ? 'default' : 'pointer'} mr={1} />
+                <StarIcon key={i} boxSize='1.5em' onClick={() => !read && setRating(i+1)} color={i < rating ? 'yellow.400' : 'gray.300'} cursor={read ? 'default' : 'pointer'} mr={1} />
             ))}
         </Flex>
     )

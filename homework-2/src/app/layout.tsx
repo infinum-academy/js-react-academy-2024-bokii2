@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
 import './/global.css'
+import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
+import { Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,18 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <SidebarNavigation />
+        <Flex
+                ml="10vw" 
+                width="calc(100vw - 10vw)"
+                padding="6rem 0"
+                color="white"
+                backgroundColor="#280454"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center">
+          <Providers>{children}</Providers>
+        </Flex>
       </body>
     </html>
   );

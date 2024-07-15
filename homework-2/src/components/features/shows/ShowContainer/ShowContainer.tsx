@@ -4,27 +4,24 @@ import { useState } from "react"
 import { ShowDetails } from "../ShowDetails/ShowDetails"
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection"
 import { Flex, Heading } from "@chakra-ui/react"
-
-const someShow = {
-    title: "Game Of Thrones",
-    description: `Game of Thrones is roughly based on the storylines of the A Song of Ice and Fire book series by George R. R. Martin,
-                  set in the fictional Seven Kingdoms of Westeros and the continent of Essos. The series follows several simultaneous
-                  plot lines. The first story arc follows a war of succession among competing claimants for control of the Iron Throne 
-                  of the Seven Kingdoms, with other noble families fighting for independence from the throne. The second concerns the 
-                  exiled scion &apos; actions to reclaim the throne; the third chronicles the threat of the impending winter, as well as the 
-                  legendary creatures and fierce peoples of the North.`,
-    averageRating: 0,
-    imageUrl: "game-of-thrones.jpg"
-}
+import useSWR from "swr"
+import { getShowDetails } from "@/fetchers/shows"
+import { useParams } from "next/navigation"
 
 export const ShowContainer = () => {
     const [averageRating, setAverageRating] = useState(0);
 
+    const params = useParams();
+
+    const { data, error, isLoading } = useSWR(`/shows/${params.id}`, () => getShowDetails(params.id as string));
+
+    if (isLoading) return <div>loading...</div>
+
+    if (error) return <div>failed to load</div>
 
     return (
-        <Flex flexDirection='column' alignItems='left' width='100%'>
-            <Heading as='h3' size='lg' marginBottom='20px'>TV Shows App</Heading>
-            <ShowDetails show={someShow} avgRating={averageRating} />
+        <Flex flexDirection='column' alignItems='left' width='920px'>
+            <ShowDetails show={data} avgRating={averageRating} />
             <ShowReviewSection setAvgRating={setAverageRating} />
         </Flex>
     )
