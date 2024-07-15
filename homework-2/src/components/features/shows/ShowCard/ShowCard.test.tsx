@@ -1,5 +1,5 @@
-import { describe, it } from "node:test";
 import { ShowCard } from "./ShowCard";
+import { render, screen } from '@testing-library/react';
 
 describe('ShowCard', () => {
     const mockShow = {
@@ -18,13 +18,13 @@ describe('ShowCard', () => {
     it('should contains image with provided url', () =>{
         render(<ShowCard show={mockShow} />)
         const img = screen.getByRole('img');
-        expect(img).toBeInDocument();
+        expect(img).toBeInTheDocument();
         expect(img).toHaveAttribute('src', mockShow.image_url);
     })
 
     it('should render the title', () =>{
         render(<ShowCard show={mockShow} />)
         const title = screen.getByText(mockShow.title);
-        expect(title).toBeInDocument();
+        expect(title).toBeInTheDocument();
     })
 });
