@@ -9,7 +9,7 @@ interface IShowCardProps {
 
 export const ShowCard = ({show}: IShowCardProps) => {
     return (
-        <Card size='sm'  width='200px' margin='10px 0' borderRadius={15}>
+        <Card size='sm'  width='200px' margin='10px 0' borderRadius={15} height='fit-content'>
             <Image alt='title' src={show.image_url} width='100%' height='auto' borderTopRadius='inherit' />
             <CardBody color='#2e1e8b'>
                 <Heading as={NextLink} href={`/all-shows/${show.id}`} size='md'>{show.title}</Heading>

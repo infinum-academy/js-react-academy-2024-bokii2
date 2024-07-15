@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
-import './/global.css'
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 import { Flex } from "@chakra-ui/react";
 
@@ -28,6 +27,7 @@ export default function RootLayout({
         <Flex
                 ml="10vw" 
                 width="calc(100vw - 10vw)"
+                height="100vh"
                 padding="6rem 0"
                 color="white"
                 backgroundColor="#280454"
