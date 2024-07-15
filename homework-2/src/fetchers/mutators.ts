@@ -1,4 +1,4 @@
-export async function mutator(url: string, { arg }: { arg: string }) {
+export async function mutator<T>(url: string, { arg }: { arg: T }) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -11,5 +11,8 @@ export async function mutator(url: string, { arg }: { arg: string }) {
         throw new Error(`Failed t mutate on ${url}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log(data)
+
+    return data;
 }
