@@ -8,16 +8,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
     const { register, handleSubmit } = useForm<IRegisterForm>();
     const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegisterForm>,
         {
             onSuccess: () => {
-                setRegistered(true);
+                setLogged(true);
             }
         }
     );
-    const [ registered, setRegistered ] = useState(false);
+    const [ logged, setLogged ] = useState(false);
     const [ error, setError ] = useState("");
 
     const onRegister = async (data: IRegisterForm) => {
@@ -37,12 +37,12 @@ export const RegisterForm = () => {
 
     return (
         <>
-            {registered && (
+            {logged && (
                 <Alert status="success">
                     Registration succeed! Please proceed to login!
                 </Alert>
             )}
-            {!registered && (
+            {!logged && (
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onRegister)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
@@ -54,16 +54,13 @@ export const RegisterForm = () => {
                             At least 8 characters
                         </FormHelperText>
                     </FormControl>
-                    <FormControl>
-                        <Input required type="password" placeholder="Confirm password" {...register('password_conformation')} />
-                    </FormControl>
                     <Button type="submit">Sign up</Button>
                     {
                         error && (
                             <Alert status="error">{error}</Alert>
                         )
                     }
-                    <Text>Already have an account? Login</Text>
+                    <Text>Don't have an accoutn? Register</Text>
                 </chakra.form>
             )}
         </>
