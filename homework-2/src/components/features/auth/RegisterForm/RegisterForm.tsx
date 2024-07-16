@@ -4,6 +4,7 @@ import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { IRegisterForm } from "@/typings/Register.type";
 import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, Text } from "@chakra-ui/react"
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
@@ -40,6 +41,7 @@ export const RegisterForm = () => {
             {registered && (
                 <Alert status="success">
                     Registration succeed! Please proceed to login!
+                    <Button as={Link} href='/login'>Login</Button>
                 </Alert>
             )}
             {!registered && (
@@ -63,7 +65,7 @@ export const RegisterForm = () => {
                             <Alert status="error">{error}</Alert>
                         )
                     }
-                    <Text>Already have an account? Login</Text>
+                    <Text>Already have an account? <Link href='/login'>Login</Link></Text>
                 </chakra.form>
             )}
         </>

@@ -22,6 +22,6 @@ export async function mutator<T>(url: string, { arg }: { arg: T }) {
 
     return {
       data,
-      authHeaders: JSON.stringify(authHeaders)
+      authHeaders
     };
 }
