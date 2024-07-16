@@ -25,9 +25,9 @@ export const LoginForm = () => {
         const response = await trigger(data);
 
         localStorage.setItem('authorization-header', JSON.stringify({
-            client: response.authHeaders.client,
-            accessToken: response.authHeaders.token,
-            uid: response.authHeaders.uid
+            'client': response.authHeaders.client,
+            'access-token': response.authHeaders.token,
+            'uid': response.authHeaders.uid
         }));
     }
 
