@@ -19,23 +19,15 @@ export const ShowContainer = () => {
 
     const id = params.id as string;
 
-    
-
     const { data, error, isLoading } = useSWR<IShow>(swrKeys.showdetails(id), fetcher);
     
     useEffect(() => {
-        console.log("useEffect triggered");
         const loadedFromLS = loadFromLocalStorage(id);
 
         setAverageRating(calcAvgRating(loadedFromLS));
         setReviewsList(loadedFromLS);
         setAverageRating(calcAvgRating(loadedFromLS));
-    }, []);
-
-    useEffect(() => {
-        console.log(id)
-        console.log("useSWR data:", data);  
-    }, [data, params]);
+    }, [id]);
         
     const saveToLocalStorage = (reviewsList: IReview[], id: string) => {
         if(reviewsList.length > 0){
@@ -87,7 +79,7 @@ export const ShowContainer = () => {
 
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
-            {data && <ShowDetails show={data} avgRating={averageRating} />}
+            {data && <ShowDetails show={data.show} avgRating={averageRating} />}
             <ShowReviewSection onDeleteReview={onDeleteReview} onAddReview={onAddReview} reviewsList={reviewsList} />
         </Flex>
     )

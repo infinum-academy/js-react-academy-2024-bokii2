@@ -2,6 +2,7 @@
 
 import { Flex, Heading, Text } from "@chakra-ui/react"
 import NextLink from 'next/link';
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const handleLogout = () => {
@@ -9,7 +10,17 @@ const handleLogout = () => {
         window.location.href = '/login';
 }
 
-export const SidebarNavigation = () => {    
+export const SidebarNavigation = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const auth = localStorage.getItem('authorization-header');
+        
+        if(auth){
+            setLoggedIn(true);
+        }
+    }, [])
+    
     return (
         <Flex as='nav' flexDirection='column' backgroundColor='#280454' color='white' height='100vh' width='10vw' position='fixed' top={0} left={0} p={30} gap={10}>
             <Heading as='h2' size='xl' mb={50} >TV SHOWS APP</Heading>
@@ -18,9 +29,9 @@ export const SidebarNavigation = () => {
             <Text as={NextLink} href={`/top-rated`}>Top rated</Text>
             <Text as={NextLink} href={`/my-profile`}>My profile</Text>
 
-            <Text as={NextLink} href={`/register`} mt='auto'>Register</Text>
-            <Text as={NextLink} href={`/login`}>Log in</Text>
-            <Text as={NextLink} href={`/log-out`} onClick={handleLogout} >Log out</Text>
+            {!loggedIn && <Text as={NextLink} href={`/register`} mt='auto'>Register</Text>}
+            {!loggedIn && <Text as={NextLink} href={`/login`}>Log in</Text>}
+            {loggedIn && <Text as={NextLink} href={`/log-out`} onClick={handleLogout} mt='auto'>Log out</Text>}
         </Flex>
     )
 }
