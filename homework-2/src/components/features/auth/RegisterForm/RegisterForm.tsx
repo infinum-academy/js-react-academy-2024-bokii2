@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
 export const RegisterForm = () => {
-    const { register, handleSubmit } = useForm<IRegisterForm>();
+    const { register, handleSubmit, formState: {isSubmitting} } = useForm<IRegisterForm>();
     const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegisterForm>,
         {
             onSuccess: () => {
@@ -39,7 +39,7 @@ export const RegisterForm = () => {
     return (
         <>
             {registered && (
-                <Alert status="success">
+                <Alert status="success" color='black'>
                     Registration succeed! Please proceed to login!
                     <Button as={Link} href='/login'>Login</Button>
                 </Alert>
@@ -48,16 +48,16 @@ export const RegisterForm = () => {
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onRegister)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email')}/>
+                        <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Password" {...register('password')}/>
+                        <Input required type="password" placeholder="Password" {...register('password')} disabled={isSubmitting}/>
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Confirm password" {...register('password_conformation')} />
+                        <Input required type="password" placeholder="Confirm password" {...register('password_conformation')} disabled={isSubmitting} />
                     </FormControl>
                     <Button type="submit">Sign up</Button>
                     {

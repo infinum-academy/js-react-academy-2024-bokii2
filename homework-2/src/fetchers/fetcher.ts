@@ -5,9 +5,9 @@ export async function fetcher<T>(input: string | URL | globalThis.Request, init?
 
         const headers = {
             ...init?.headers,
-            'uid': authHeader.uid,
-            'client': authHeader.client,
-            'access-token': authHeader['access-token']
+            'uid': authHeader.uid || '',
+            'client': authHeader.client || '',
+            'access-token': authHeader['access-token'] || ''
         }
 
         const response = await fetch(input, {...init, headers });

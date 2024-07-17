@@ -3,14 +3,14 @@
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { ILoginForm } from "@/typings/Login.type";
-import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, Text } from "@chakra-ui/react"
+import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, Spinner, Text } from "@chakra-ui/react"
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
 export const LoginForm = () => {
-    const { register, handleSubmit } = useForm<ILoginForm>();
+    const { register, handleSubmit, formState: {isSubmitting} } = useForm<ILoginForm>();
     const { trigger } = useSWRMutation(swrKeys.login, mutator<ILoginForm>,
         {
             onSuccess: () => {
@@ -34,29 +34,30 @@ export const LoginForm = () => {
     return (
         <>
             {logged && (
-                <Alert status="success">
-                    Login succeed! Please proceed to the tv shows!
+                <Alert status="success" textColor='black'>
+                    <Spinner />
+                    Login succeed! Please wait to be proceed to the TV shows!
                 </Alert>
             )}
             {!logged && (
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onLogin)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email')}/>
+                        <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Password" {...register('password')}/>
+                        <Input required type="password" placeholder="Password" {...register('password')} disabled={isSubmitting}/>
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>
                     </FormControl>
-                    <Button type="submit">Log in</Button>
+                    <Button type="submit" disabled={isSubmitting}>Log in</Button>
                     {
                         error && (
                             <Alert status="error">Invalid email or password</Alert>
                         )
                     }
-                    <Text>Don&apos;t have an accoutn? <Link href='/login'>Register</Link></Text>
+                    <Text>Don&apos;t have an account? <Link href='/login'>Register</Link></Text>
                 </chakra.form>
             )}
         </>

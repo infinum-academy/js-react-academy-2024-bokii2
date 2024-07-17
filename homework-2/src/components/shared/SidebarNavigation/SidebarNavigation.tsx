@@ -17,7 +17,10 @@ export const SidebarNavigation = () => {
             <Text as={NextLink} href={`/all-shows`}>All shows</Text>
             <Text as={NextLink} href={`/top-rated`}>Top rated</Text>
             <Text as={NextLink} href={`/my-profile`}>My profile</Text>
-            <Text as={NextLink} href={`/log-out`} mt='auto' onClick={handleLogout} >Log out</Text>
+
+            <Text as={NextLink} href={`/register`} mt='auto'>Register</Text>
+            <Text as={NextLink} href={`/login`}>Log in</Text>
+            <Text as={NextLink} href={`/log-out`} onClick={handleLogout} >Log out</Text>
         </Flex>
     )
 }
