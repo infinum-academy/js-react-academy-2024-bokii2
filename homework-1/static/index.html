@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>TV Shows App</title>
+        <link rel="stylesheet" href="styles.css" >
+        <link rel="icon" type="image/x-icon" href="../img/favicon-32x32.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <h1>TV Shows</h1>
+            
+            <div class="tvshow">
+                <img src="../img/game-of-thrones.jpg" width="800px">
+
+                <div class="desc">
+                    <h2>Game Of Thrones</h2>
+                    <p>
+                        Game of Thrones is roughly based on the storylines of the A Song of Ice and Fire book series by George R. R. Martin, 
+                        set in the fictional Seven Kingdoms of Westeros and the continent of Essos. The series follows several simultaneous 
+                        plot lines. The first story arc follows a war of succession among competing claimants for control of the Iron Throne 
+                        of the Seven Kingdoms, with other noble families fighting for independence from the throne. The second concerns the 
+                        exiled scion's actions to reclaim the throne; the third chronicles the threat of the impending winter, as well as the 
+                        legendary creatures and fierce peoples of the North.
+                    </p>
+                    <h3 id="rat"></h3>
+                </div>
+            </div>
+
+            <div class="reviews">
+                <h2>Reviews</h2>
+                <div class="reviewForm">
+                    <textarea id="reviewDesc" type="text" name="review" placeholder="Add review"></textarea>
+                    <div id="starRating">
+                        <span>Rating</span>
+                        <div class="stars">
+                            <span onclick="starRating(1)" class="star">&starf;</span>
+                            <span onclick="starRating(2)" class="star">&starf;</span>
+                            <span onclick="starRating(3)" class="star">&starf;</span>
+                            <span onclick="starRating(4)" class="star">&starf;</span>
+                            <span onclick="starRating(5)" class="star">&starf;</span>
+                        </div>
+                    </div>
+                    <button onclick="postButtonHandler()">Post</button>
+                </div>
+
+                <div id="reviewList">
+                    
+                </div>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
