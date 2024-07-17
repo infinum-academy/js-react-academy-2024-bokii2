@@ -19,6 +19,8 @@ export const ShowContainer = () => {
 
     const id = params.id as string;
 
+    
+
     const { data, error, isLoading } = useSWR<IShow>(swrKeys.showdetails(id), fetcher);
     
     useEffect(() => {
@@ -31,8 +33,9 @@ export const ShowContainer = () => {
     }, []);
 
     useEffect(() => {
+        console.log(id)
         console.log("useSWR data:", data);  
-    }, [data]);
+    }, [data, params]);
         
     const saveToLocalStorage = (reviewsList: IReview[], id: string) => {
         if(reviewsList.length > 0){
