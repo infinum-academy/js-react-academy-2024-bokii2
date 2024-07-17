@@ -28,11 +28,11 @@ export const ShowContainer = () => {
         setAverageRating(calcAvgRating(loadedFromLS));
         setReviewsList(loadedFromLS);
         setAverageRating(calcAvgRating(loadedFromLS));
-    }, [id]);
+    }, []);
 
     useEffect(() => {
-        console.log("useSWR data:", data);
-    }, []);
+        console.log("useSWR data:", data);  
+    }, [data]);
         
     const saveToLocalStorage = (reviewsList: IReview[], id: string) => {
         if(reviewsList.length > 0){

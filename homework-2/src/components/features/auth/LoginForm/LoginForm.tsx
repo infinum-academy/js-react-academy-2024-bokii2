@@ -1,5 +1,6 @@
 'use client'
 
+import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { ILoginForm } from "@/typings/Login.type";
@@ -46,7 +47,7 @@ export const LoginForm = () => {
                         <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Password" {...register('password')} disabled={isSubmitting}/>
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password')}} />
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>

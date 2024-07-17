@@ -1,5 +1,6 @@
 'use client'
 
+import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { IRegisterForm } from "@/typings/Register.type";
@@ -51,13 +52,13 @@ export const RegisterForm = () => {
                         <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Password" {...register('password')} disabled={isSubmitting}/>
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password')}} />
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>
                     </FormControl>
                     <FormControl>
-                        <Input required type="password" placeholder="Confirm password" {...register('password_conformation')} disabled={isSubmitting} />
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password_conformation')}} />
                     </FormControl>
                     <Button type="submit">Sign up</Button>
                     {
