@@ -11,6 +11,7 @@ import { fetcher } from "@/fetchers/fetcher"
 import { IShow } from "@/typings/Show.type"
 import { IReview } from "@/typings/Review.type"
 
+
 export const ShowContainer = () => {
     const [averageRating, setAverageRating] = useState(0);
     const [reviewsList, setReviewsList] = useState<IReview[]>([]);
@@ -20,43 +21,6 @@ export const ShowContainer = () => {
     const id = params.id as string;
 
     const { data, error, isLoading } = useSWR<IShow>(swrKeys.showdetails(id), fetcher);
-    
-    useEffect(() => {
-        const loadedFromLS = loadFromLocalStorage(id);
-
-        setAverageRating(calcAvgRating(loadedFromLS));
-        setReviewsList(loadedFromLS);
-        setAverageRating(calcAvgRating(loadedFromLS));
-    }, [id]);
-
-    const saveToLocalStorage = (reviewsList: IReview[], id: string) => {
-        if(reviewsList.length > 0){
-            localStorage.setItem(`review-list-${id}`, JSON.stringify(reviewsList));
-        } else {
-            localStorage.removeItem(`review-list-${id}`);
-        }
-    };
-    
-    const loadFromLocalStorage = (id: string) => {
-        const reviewListString = localStorage.getItem(`review-list-${id}`);
-        return reviewListString ? JSON.parse(reviewListString) : [];
-    }
-    
-    const onAddReview = (review: IReview) => {
-        const newList = [...reviewsList, review];
-        
-        setReviewsList(newList);
-        saveToLocalStorage(newList, id);
-        setAverageRating(calcAvgRating(newList));
-    }
-    
-    const onDeleteReview = (reviewToRemove: IReview) => {
-        const newList = reviewsList.filter((review) => review !== reviewToRemove);
-        
-        setReviewsList(newList);
-        saveToLocalStorage(newList, id);
-        setAverageRating(calcAvgRating(newList));
-    }
     
     let calcAvgRating = (reviews: IReview[]) => {
         let sum = 0;
@@ -80,7 +44,7 @@ export const ShowContainer = () => {
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
             {data && <ShowDetails show={data.show} avgRating={averageRating} />}
-            <ShowReviewSection onDeleteReview={onDeleteReview} onAddReview={onAddReview} id={id} />
+            <ShowReviewSection id={Number(id)} />
         </Flex>
     )
 }

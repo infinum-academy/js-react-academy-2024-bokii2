@@ -15,7 +15,7 @@ export const ReviewItem = ({review, onDeleteReview}: IReviewItemProps) => {
             <Flex direction='row' alignItems='center' width='100%' gap={8} ml='10px'>
                 <Image alt="avatar" src='https://i.pravatar.cc/50' borderRadius={15} />
                 <Flex direction='column'>
-                    <Text mb='5px'>{review.user.email}</Text>
+                    <Text mb='5px'>{review.user?.email}</Text>
                     <Flex direction='row'>
                         <Text mr='10px'>{review.rating + ' / 5'}</Text>
                         <StarsRating rating={review.rating} setRating={() => {}} read />

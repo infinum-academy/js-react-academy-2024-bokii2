@@ -4,22 +4,30 @@ import { Flex, Heading } from "@chakra-ui/react"
 import { ReviewForm } from "../ReviewForm/ReviewForm"
 import { ReviewList } from "../../review/ReviewList/ReviewList"
 import { IReview, IReviewList } from "@/typings/Review.type";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
 import { mutator } from "@/fetchers/mutators";
+import useSWRMutation from "swr/mutation";
+import { createReview } from "@/fetchers/review";
 
 interface IShowReviewSectionProps {
-    onAddReview: (review: IReview) => void;
-    onDeleteReview: (review: IReview) => void;
-    id: string;
+    id: number;
 }
 
-export const ShowReviewSection = ({onAddReview, onDeleteReview, id}: IShowReviewSectionProps) => {
-    const { data, error, isLoading } = useSWR<IReviewList>(swrKeys.getReviews(id), fetcher);
-    
-    console.log(data)
+export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
+    const { data, error, isLoading } = useSWR<IReviewList>(swrKeys.getReviews(id.toString()), fetcher);
 
+    const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
+        onSuccess: () => {
+            mutate(swrKeys.getReviews(id.toString()))
+        }
+    })
+
+    const addReview = async (newReview: IReview) =>{
+        await trigger(newReview);
+    }
+    
     if (isLoading) return <div>loading...</div>
     
     if (error) return <div>failed to load</div>
@@ -35,8 +43,8 @@ export const ShowReviewSection = ({onAddReview, onDeleteReview, id}: IShowReview
                 Reviews
             </Heading>
             <Flex direction='column' flexGrow={1}  >
-                <ReviewForm addShowReview={onAddReview} />
-                {data && <ReviewList reviewList={data.reviews} deleteReview={onDeleteReview} />}
+                <ReviewForm addShowReview={addReview} id={id} />
+                {data && <ReviewList reviewList={data.reviews} deleteReview={()=>{}} />}
             </Flex>
         </Flex>
     )
