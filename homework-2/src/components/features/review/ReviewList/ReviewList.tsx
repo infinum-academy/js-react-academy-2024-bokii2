@@ -4,15 +4,14 @@ import { ReviewItem } from "../ReviewItem/ReviewItem";
 
 interface IReviewListProps {
     reviewList: IReview[];
-    deleteReview: (review: IReview) => void;
 }
 
-export const ReviewList = ({reviewList, deleteReview}: IReviewListProps) => {    
+export const ReviewList = ({reviewList}: IReviewListProps) => {    
     return (
         <Flex direction='column' mt={10}>
             {reviewList.map((review, index) => {
                 return (
-                    <ReviewItem review={review} key={index} onDeleteReview={deleteReview} />
+                    <ReviewItem review={review} key={index} />
                 );
             })}
         </Flex>

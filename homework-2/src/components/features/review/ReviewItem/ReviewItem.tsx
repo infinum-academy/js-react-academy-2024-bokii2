@@ -3,13 +3,13 @@ import { Image, Card, CardBody, Flex, Text, Container } from "@chakra-ui/react"
 import { StarsRating } from "../../shows/ReviewForm/StarsRating/StarsRating";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { IUser } from "@/typings/User.type";
+import { DeleteButton } from "./DeleteButton/DeleteButton";
 
 interface IReviewItemProps {
     review: IReview;
-    onDeleteReview: (review: IReview) => void;
 }
 
-export const ReviewItem = ({review, onDeleteReview}: IReviewItemProps) => {
+export const ReviewItem = ({review}: IReviewItemProps) => {
     return (
         <Card backgroundColor='#381484' color='white' borderRadius={20} margin='8px 0' width='100%' padding='30px'>
             <Flex direction='row' alignItems='center' width='100%' gap={8} ml='10px'>
@@ -22,8 +22,8 @@ export const ReviewItem = ({review, onDeleteReview}: IReviewItemProps) => {
                     </Flex>
                 </Flex>
                 <Text flexGrow={1}>{review.comment}</Text>
-                <DeleteIcon onClick={() => onDeleteReview(review)} boxSize={7} mr='10px' data-testid="delete-button" />
-                </Flex>
+                <DeleteButton review={review} />
+            </Flex>
         </Card>
     )
 }

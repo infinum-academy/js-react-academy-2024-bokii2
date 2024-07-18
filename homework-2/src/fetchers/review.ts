@@ -7,3 +7,9 @@ export function createReview(url: string, { arg }: { arg: IReview }) {
 		body: JSON.stringify(arg),
 	});
 }
+
+export function deleteReview(url: string, { arg }: { arg: IReview }) {
+	return fetcher(url, {
+		method: 'DELETE'
+	});
+}

@@ -44,7 +44,7 @@ export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
             </Heading>
             <Flex direction='column' flexGrow={1}  >
                 <ReviewForm addShowReview={addReview} id={id} />
-                {data && <ReviewList reviewList={data.reviews} deleteReview={()=>{}} />}
+                {data && <ReviewList reviewList={data.reviews} />}
             </Flex>
         </Flex>
     )
