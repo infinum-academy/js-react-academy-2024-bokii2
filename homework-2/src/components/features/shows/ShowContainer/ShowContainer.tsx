@@ -28,7 +28,7 @@ export const ShowContainer = () => {
         setReviewsList(loadedFromLS);
         setAverageRating(calcAvgRating(loadedFromLS));
     }, [id]);
-        
+
     const saveToLocalStorage = (reviewsList: IReview[], id: string) => {
         if(reviewsList.length > 0){
             localStorage.setItem(`review-list-${id}`, JSON.stringify(reviewsList));
@@ -80,7 +80,7 @@ export const ShowContainer = () => {
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
             {data && <ShowDetails show={data.show} avgRating={averageRating} />}
-            <ShowReviewSection onDeleteReview={onDeleteReview} onAddReview={onAddReview} reviewsList={reviewsList} />
+            <ShowReviewSection onDeleteReview={onDeleteReview} onAddReview={onAddReview} id={id} />
         </Flex>
     )
 }
