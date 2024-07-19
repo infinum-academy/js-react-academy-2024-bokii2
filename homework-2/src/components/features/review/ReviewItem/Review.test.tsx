@@ -1,45 +1,30 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { ReviewItem } from "./ReviewItem";
+import { DeleteButton } from "./DeleteButton/DeleteButton";
+
+const mockReview = {
+    show_id: 1,
+    rating: 3,
+    comment: 'Test comment'
+};
+
+jest.mock("./DeleteButton/DeleteButton", () => {
+    return {
+        DeleteButton: jest.fn().mockReturnValue(<div data-testid="delete-button"></div>)
+    }
+})
 
 describe('ReviewItem', () => {
-    const mockReview = {
-        email: 'test@test.com',
-        rating: 3,
-        comment: 'Test comment'
-    };
-
-    const mockOnDelete = jest.fn();
-
-    it('should renders correct user email', () =>{
-        render(<ReviewItem review={mockReview} onDeleteReview={() => {}} />)
-        const emailElement = screen.getByText(mockReview.email);
-        expect(emailElement).toBeInTheDocument();
+    it('should render the delete button', () => {
+        render(<ReviewItem review={mockReview} />);
+        
+        expect(DeleteButton).toHaveBeenCalledWith({review: mockReview}, {});
     })
 
-    it('should render correct rating', () =>{
-        render(<ReviewItem review={mockReview} onDeleteReview={() => {}} />)
-        const rating = screen.getByText(mockReview.rating + ' / 5');
-        expect(rating).toBeInTheDocument();
-    })
+    it('should render review comment', () => {
+        render(<ReviewItem review={mockReview} />);
 
-    it('should render review comment', () =>{
-        render(<ReviewItem review={mockReview} onDeleteReview={() => {}} />)
-        const comment = screen.getByText(mockReview.comment);
-        expect(comment).toBeInTheDocument();
-    })
-
-    it('should render delete button', () =>{
-        render(<ReviewItem review={mockReview} onDeleteReview={() => {}} />)
-        const deleteButton = screen.getByTestId('delete-button');
-        expect(deleteButton).toBeInTheDocument();
-    })
-
-    it('should call delete button only once', () =>{
-        render(<ReviewItem review={mockReview} onDeleteReview={mockOnDelete} />)
-
-        const deleteButton = screen.getByTestId('delete-button');
-        fireEvent.click(deleteButton);
-
-        expect(mockOnDelete).toHaveBeenCalledTimes(1);
+        const comment = screen.getByTestId('comment');
+        expect(comment.textContent).toBe(mockReview.comment);
     })
 })

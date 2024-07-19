@@ -1,8 +1,6 @@
 import { IReview } from "@/typings/Review.type"
-import { Image, Card, CardBody, Flex, Text, Container } from "@chakra-ui/react"
+import { Image, Card, Flex, Text } from "@chakra-ui/react"
 import { StarsRating } from "../../shows/ReviewForm/StarsRating/StarsRating";
-import { DeleteIcon } from "@chakra-ui/icons";
-import { IUser } from "@/typings/User.type";
 import { DeleteButton } from "./DeleteButton/DeleteButton";
 
 interface IReviewItemProps {
@@ -21,7 +19,7 @@ export const ReviewItem = ({review}: IReviewItemProps) => {
                         <StarsRating rating={review.rating} setRating={() => {}} read />
                     </Flex>
                 </Flex>
-                <Text flexGrow={1}>{review.comment}</Text>
+                <Text flexGrow={1} data-testid='comment'>{review.comment}</Text>
                 <DeleteButton review={review} />
             </Flex>
         </Card>

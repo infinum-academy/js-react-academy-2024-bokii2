@@ -54,7 +54,7 @@ export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
                 <Textarea {...register('comment')} backgroundColor='white' color='black' width='100%' alignContent='center' placeholder="Enter review" disabled={isSubmitting} />
             </FormControl>
             <FormControl isDisabled={isSubmitting}>
-                <Flex alignItems='center' my={4} >
+                <Flex alignItems='center' my={4} data-testid='rating' >
                     <Text fontSize='2xl' mr={3} >Rating</Text>
                     <StarsRating {...register('rating')} rating={rating} setRating={setRating} /> 
                     {

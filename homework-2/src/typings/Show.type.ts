@@ -1,5 +1,4 @@
 export interface IShow {
-    show: IShow;
     id: string;
     title: string;
     description: string;

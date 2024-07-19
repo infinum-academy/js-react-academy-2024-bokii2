@@ -11,6 +11,9 @@ import { fetcher } from "@/fetchers/fetcher"
 import { IShow } from "@/typings/Show.type"
 import { IReview } from "@/typings/Review.type"
 
+interface IShowResp {
+    show: IShow;
+}
 
 export const ShowContainer = () => {
     const [averageRating, setAverageRating] = useState(0);
@@ -20,7 +23,7 @@ export const ShowContainer = () => {
 
     const id = params.id as string;
 
-    const { data, error, isLoading } = useSWR<IShow>(swrKeys.showdetails(id), fetcher);
+    const { data, error, isLoading } = useSWR<IShowResp>(swrKeys.showdetails(id), fetcher);
     
     let calcAvgRating = (reviews: IReview[]) => {
         let sum = 0;
