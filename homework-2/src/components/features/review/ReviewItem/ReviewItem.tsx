@@ -2,12 +2,25 @@ import { IReview } from "@/typings/Review.type"
 import { Image, Card, Flex, Text } from "@chakra-ui/react"
 import { StarsRating } from "../../shows/ReviewForm/StarsRating/StarsRating";
 import { DeleteButton } from "./DeleteButton/DeleteButton";
+import useSWR from "swr";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { fetcher } from "@/fetchers/fetcher";
+import { IUser } from "@/typings/User.type";
 
 interface IReviewItemProps {
     review: IReview;
 }
 
+interface IReviewResp {
+    user: IUser;
+}
+
 export const ReviewItem = ({review}: IReviewItemProps) => {
+    const {data} = useSWR<IReviewResp>(swrKeys.me, fetcher);
+
+    console.log(review);
+    console.log(data);
+
     return (
         <Card backgroundColor='#381484' color='white' borderRadius={20} margin='8px 0' width='100%' padding='30px'>
             <Flex direction='row' alignItems='center' width='100%' gap={8} ml='10px'>
@@ -20,7 +33,7 @@ export const ReviewItem = ({review}: IReviewItemProps) => {
                     </Flex>
                 </Flex>
                 <Text flexGrow={1} data-testid='comment'>{review.comment}</Text>
-                <DeleteButton review={review} />
+                { review.user?.email === data?.user.email && <DeleteButton review={review} />}
             </Flex>
         </Card>
     )
