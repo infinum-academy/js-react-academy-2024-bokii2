@@ -13,3 +13,15 @@ export function deleteReview(url: string, { arg }: { arg: IReview }) {
 		method: 'DELETE'
 	});
 }
+
+export function updateReview(url: string, { arg }: { arg: IReview }) {
+	const review = {
+		comment: arg.comment,
+		rating: arg.rating
+	}
+
+	return fetcher(url, {
+		method: 'PATCH',
+		body: JSON.stringify(review),
+	});
+}

@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
 import { IUser } from "@/typings/User.type";
+import { UpdateReview } from "./UpdateReview/UpdateReview";
 
 interface IReviewItemProps {
     review: IReview;
@@ -17,9 +18,6 @@ interface IReviewResp {
 
 export const ReviewItem = ({review}: IReviewItemProps) => {
     const {data} = useSWR<IReviewResp>(swrKeys.me, fetcher);
-
-    console.log(review);
-    console.log(data);
 
     return (
         <Card backgroundColor='#381484' color='white' borderRadius={20} margin='8px 0' width='100%' padding='30px'>
@@ -33,6 +31,7 @@ export const ReviewItem = ({review}: IReviewItemProps) => {
                     </Flex>
                 </Flex>
                 <Text flexGrow={1} data-testid='comment'>{review.comment}</Text>
+                { review.user?.email === data?.user.email && <UpdateReview review={review} /> }
                 { review.user?.email === data?.user.email && <DeleteButton review={review} />}
             </Flex>
         </Card>
