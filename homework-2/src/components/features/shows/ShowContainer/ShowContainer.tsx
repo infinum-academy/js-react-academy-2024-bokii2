@@ -17,23 +17,12 @@ interface IShowResp {
 
 export const ShowContainer = () => {
     const [averageRating, setAverageRating] = useState(0);
-    const [reviewsList, setReviewsList] = useState<IReview[]>([]);
 
     const params = useParams();
 
     const id = params.id as string;
 
     const { data, error, isLoading } = useSWR<IShowResp>(swrKeys.showdetails(id), fetcher);
-    
-    let calcAvgRating = (reviews: IReview[]) => {
-        let sum = 0;
-        
-        reviews.forEach((review) => {
-            sum += review.rating;
-        });
-        
-        return Number((sum / reviews.length).toFixed(2));
-    }
     
     if (isLoading) return <div>loading...</div>
     

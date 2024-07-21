@@ -2,10 +2,6 @@ import { IReview } from "@/typings/Review.type"
 import { Alert, Button, chakra, Flex, FormControl, Text, Textarea } from "@chakra-ui/react"
 import { StarsRating } from "./StarsRating/StarsRating";
 import { useForm } from "react-hook-form";
-import useSWR from "swr";
-import { swrKeys } from "@/fetchers/swrKeys";
-import { fetcher } from "@/fetchers/fetcher";
-import { IUser } from "@/typings/User.type";
 
 interface IReviewFormProps {
     addShowReview: (review: IReview) => void;
@@ -47,7 +43,7 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
                 {errors.comment && <Alert status="error">{errors.comment?.message}</Alert>}
             </FormControl>
             <FormControl isDisabled={isSubmitting}>
-                <Flex alignItems='center' my={4} >
+                <Flex alignItems='center' my={4}  data-testid="rating" >
                     <Text fontSize='2xl' mr={3} >Rating</Text>
                     <StarsRating rating={rating} setRating={(value) => {
                         setValue('rating', value);
