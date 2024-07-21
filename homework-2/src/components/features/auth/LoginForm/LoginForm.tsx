@@ -11,25 +11,24 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
 export const LoginForm = () => {
-    const { register, handleSubmit, formState: {isSubmitting} } = useForm<ILoginForm>();
-    const { trigger } = useSWRMutation(swrKeys.login, mutator<ILoginForm>,
-        {
-            onSuccess: () => {
-                setLogged(true);
-            }
+    const { register, handleSubmit, formState: {isSubmitting, errors}, setError } = useForm<ILoginForm>();
+    const { trigger } = useSWRMutation(swrKeys.login, mutator<ILoginForm>, {
+        onSuccess: (data) => {
+            localStorage.setItem('authorization-header', JSON.stringify({
+                'client': data.authHeaders.client,
+                'access-token': data.authHeaders.token,
+                'uid': data.authHeaders.uid
+            }));
+            setLogged(true);
+        },
+        onError: () => {
+            setError("invalidError", { type: 'manual', message: 'Invalid email or password' });
         }
-    );
+    });
     const [ logged, setLogged ] = useState(false);
-    const [ error, setError ] = useState("");
 
     const onLogin = async (data: ILoginForm) => {
-        const response = await trigger(data);
-
-        localStorage.setItem('authorization-header', JSON.stringify({
-            'client': response.authHeaders.client,
-            'access-token': response.authHeaders.token,
-            'uid': response.authHeaders.uid
-        }));
+        await trigger(data);
     }
 
     return (
@@ -44,21 +43,19 @@ export const LoginForm = () => {
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onLogin)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
+                        <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
+                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password')}} />
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required'})}} />
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>
                     </FormControl>
+                    {errors.password && <Alert status="error">{errors.password.message}</Alert>}
                     <Button type="submit" disabled={isSubmitting}>Log in</Button>
-                    {
-                        error && (
-                            <Alert status="error">Invalid email or password</Alert>
-                        )
-                    }
-                    <Text>Don&apos;t have an account? <Link href='/login'>Register</Link></Text>
+                    {errors.invalidError && <Alert status="error">{errors.invalidError.message}</Alert>}
+                    <Text>Don&apos;t have an account? <Link href='/register'>Register</Link></Text>
                 </chakra.form>
             )}
         </>

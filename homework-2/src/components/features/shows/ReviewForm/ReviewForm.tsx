@@ -1,6 +1,5 @@
 import { IReview } from "@/typings/Review.type"
-import { Alert, Button, chakra, Container, Flex, FormControl, FormErrorMessage, Text, Textarea } from "@chakra-ui/react"
-import { useState } from "react";
+import { Alert, Button, chakra, Flex, FormControl, Text, Textarea } from "@chakra-ui/react"
 import { StarsRating } from "./StarsRating/StarsRating";
 import { useForm } from "react-hook-form";
 import useSWR from "swr";
@@ -19,49 +18,42 @@ interface IReviewInput {
     rating: number;
 }
 
-export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
-    const [comment, setComment] = useState('');
-    const [rating, setRating] = useState(0);
-    const [err, setErr] = useState('')
-
-    const {register, handleSubmit, formState: { isSubmitting, errors }, reset } = useForm<IReviewInput>();  
-    const { data } = useSWR<IUser>(swrKeys.me, fetcher);
+export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
+    const {register, handleSubmit, setValue, setError, clearErrors, formState: { isSubmitting, errors }, reset, watch } = useForm<IReviewInput>();  
     
-    const addReview = async (rev: IReviewInput) => {
+    const rating = watch('rating')
 
-        if(!data)
-            return;
+    const addReview = async (data: IReviewInput) => {
 
-        if(!rev.comment && !rev.rating) {
-            alert("Please give rating!");
+        if (!data.rating) {
+            setError('rating', { type: 'manual', message: 'Please give a rating!' });
             return;
         }
-
         const newReview: IReview = {
-            show_id: id,
-            comment: rev.comment,
-            rating
+            show_id: data.id,
+            comment: data.comment,
+            rating: data.rating
         };
 
         addShowReview(newReview);
         reset();
-        setRating(0);
-    }
+        clearErrors('rating');
+}
 
     return (
         <chakra.form maxWidth='inherit' onSubmit={handleSubmit(addReview)} >
             <FormControl isDisabled={isSubmitting}>
-                <Textarea {...register('comment')} backgroundColor='white' color='black' width='100%' alignContent='center' placeholder="Enter review" disabled={isSubmitting} />
+                <Textarea {...register('comment', {required: "Please leave a comment!"})} backgroundColor='white' color='black' width='100%' alignContent='center' placeholder="Enter review" disabled={isSubmitting} />
+                {errors.comment && <Alert status="error">{errors.comment?.message}</Alert>}
             </FormControl>
             <FormControl isDisabled={isSubmitting}>
-                <Flex alignItems='center' my={4} data-testid='rating' >
+                <Flex alignItems='center' my={4} >
                     <Text fontSize='2xl' mr={3} >Rating</Text>
-                    <StarsRating {...register('rating')} rating={rating} setRating={setRating} /> 
-                    {
-                        err && (
-                            <Alert status="error">{err}</Alert>
-                        )
-                    }
+                    <StarsRating rating={rating} setRating={(value) => {
+                        setValue('rating', value);
+                        if (value) clearErrors('rating');
+                    }} />
+                    {errors.rating && <Alert status="error">{errors.rating?.message}</Alert>} 
                 </Flex>
             </FormControl>
             <Button isDisabled={isSubmitting} borderRadius='20px' padding='0 25px' type="submit">Post</Button>

@@ -1,11 +1,10 @@
 'use client'
 
-import { getShowsList } from "@/fetchers/shows";
 import { ShowsList } from "../ShowsList/ShowsList";
 import useSWR from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
-import { IShow, IShowList } from "@/typings/Show.type";
+import { IShowList } from "@/typings/Show.type";
 
 export const ShowListContainer = () => {
 

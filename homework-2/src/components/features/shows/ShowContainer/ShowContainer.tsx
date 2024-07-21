@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ShowDetails } from "../ShowDetails/ShowDetails"
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection"
 import { Flex } from "@chakra-ui/react"

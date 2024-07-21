@@ -4,7 +4,7 @@ import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
 export default function AllShows() {
     return (
         <>
-            <AuthRedirect to='/login' condition='loggedOut' />
+            <AuthRedirect to='/login' condition='loggedOut'/>
             <ShowListContainer />
         </>
     );

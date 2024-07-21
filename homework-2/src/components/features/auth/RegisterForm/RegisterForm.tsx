@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
 export const RegisterForm = () => {
-    const { register, handleSubmit, formState: {isSubmitting} } = useForm<IRegisterForm>();
+    const { register, handleSubmit, formState: {isSubmitting, errors}, setError } = useForm<IRegisterForm>();
     const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegisterForm>,
         {
             onSuccess: () => {
@@ -20,20 +20,18 @@ export const RegisterForm = () => {
         }
     );
     const [ registered, setRegistered ] = useState(false);
-    const [ error, setError ] = useState("");
 
     const onRegister = async (data: IRegisterForm) => {
         if(data.password.length < 8) {
-            setError("Password must be at least 8 characters");
+            setError("password", { type: "manual", message: "Password must be at least 8 characters" });
             return;
         }
 
         if(data.password !== data.password_conformation) {
-            setError("Passwords do not match");
+            setError("password_conformation", { type: "manual", message: "Passwords do not match" });
             return;
         }
 
-        setError("");
         await trigger(data);
     }
 
@@ -49,23 +47,22 @@ export const RegisterForm = () => {
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onRegister)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email')} disabled={isSubmitting} />
+                        <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
+                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password')}} />
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required' })}} />
                         <FormHelperText>
                             At least 8 characters
                         </FormHelperText>
+                        {errors.password && <Alert status="error">{errors.password.message}</Alert>}
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password_conformation')}} />
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password_conformation', { required: 'Password confirmation is required' })}} />
+                        {errors.password_conformation && <Alert status="error">{errors.password_conformation.message}</Alert>}
                     </FormControl>
                     <Button type="submit">Sign up</Button>
-                    {
-                        error && (
-                            <Alert status="error">{error}</Alert>
-                        )
-                    }
+
                     <Text>Already have an account? <Link href='/login'>Login</Link></Text>
                 </chakra.form>
             )}
