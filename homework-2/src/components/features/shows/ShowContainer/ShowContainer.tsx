@@ -24,7 +24,6 @@ export const ShowContainer = () => {
     useEffect(() => {
         const loadedFromLS = loadFromLocalStorage(id);
 
-        setAverageRating(calcAvgRating(loadedFromLS));
         setReviewsList(loadedFromLS);
         setAverageRating(calcAvgRating(loadedFromLS));
     }, [id]);

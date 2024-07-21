@@ -8,7 +8,7 @@ import useSWR from "swr";
 
 interface IAuthRedirectProps {
     to: string,
-    condition: 'loggedIn' | 'loggedOut'
+    condition: 'loggedIn' | 'loggedOut',
 }
 
 export const AuthRedirect = ({ to, condition }: IAuthRedirectProps) => {
@@ -21,12 +21,10 @@ export const AuthRedirect = ({ to, condition }: IAuthRedirectProps) => {
         }
 
         if (!data && condition === 'loggedOut') {
-            console.log('Logged out, redirecting');
             router.push(to);
         }
 
         if (data && condition === 'loggedIn') {
-            console.log('Logged in, redirecting');
             router.push(to);
         }
     }, [data, isLoading, router, condition, to]);
