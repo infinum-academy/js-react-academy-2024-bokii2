@@ -1,6 +1,5 @@
 import { StarIcon } from "@chakra-ui/icons"
 import { Flex } from "@chakra-ui/react"
-import { useState } from "react"
 
 interface IStarsRatingProps {
     rating: number;
@@ -9,7 +8,6 @@ interface IStarsRatingProps {
 }
 
 export const StarsRating = ({rating, setRating, read = false}: IStarsRatingProps) => {
-
     return (
         <Flex>
             {[...Array(5)].map((_, i) => (

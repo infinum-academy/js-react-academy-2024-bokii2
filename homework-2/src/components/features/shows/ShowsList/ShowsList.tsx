@@ -10,7 +10,7 @@ interface IShowListProps{
 
 export const ShowsList = ({shows}: IShowListProps) => {
     return (
-        <Flex bgColor='#280454' height='100vh' width='920px' flexWrap='wrap' justifyContent='space-around' data-testid='showsList'>
+        <Flex bgColor='#280454' width='920px' flexWrap='wrap' justifyContent='space-around'>
             {shows.map((show) => {
                 return (
                     <ShowCard key={show.id} show={show} />
