@@ -1,10 +1,11 @@
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
+import { Container } from "@chakra-ui/react";
 
-export default function Layout({ children }) {
+export default function Layout({ children }: any) {
   return (
-    <div>
+    <>
       <SidebarNavigation />
-      {children}
-    </div>
+      <Container>{children}</Container>
+    </>
   );
 }
