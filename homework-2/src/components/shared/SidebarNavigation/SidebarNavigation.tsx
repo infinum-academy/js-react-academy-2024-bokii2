@@ -9,7 +9,6 @@ const handleLogout = () => {
 }
 
 export const SidebarNavigation = () => {
-
     return (
         <Flex as='nav' flexDirection='column' backgroundColor='#280454' color='white' height='100%' width='10vw' position='absolute' top={0} left={0} p={30} gap={10}>
             <Heading as='h2' size='xl' mb={50} >TV SHOWS APP</Heading>
