@@ -14,7 +14,7 @@ interface IReviewInput {
     rating: number;
 }
 
-export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
+export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
     const {register, handleSubmit, setValue, setError, clearErrors, formState: { isSubmitting, errors }, reset, watch } = useForm<IReviewInput>();  
     
     const rating = watch('rating')
@@ -25,8 +25,9 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
             setError('rating', { type: 'manual', message: 'Please give a rating!' });
             return;
         }
+
         const newReview: IReview = {
-            show_id: data.id,
+            show_id: id,
             comment: data.comment,
             rating: data.rating
         };
@@ -34,7 +35,7 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
         addShowReview(newReview);
         reset();
         clearErrors('rating');
-}
+    }
 
     return (
         <chakra.form maxWidth='inherit' onSubmit={handleSubmit(addReview)} >

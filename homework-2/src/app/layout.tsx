@@ -23,12 +23,13 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
           <Flex
-                  padding="6rem 0"
-                  color="white"
-                  backgroundColor="#280454"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center">
+            padding="6rem 0"
+            color="white"
+            backgroundColor="#280454"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
             <Providers>{children}</Providers>
           </Flex>
       </body>

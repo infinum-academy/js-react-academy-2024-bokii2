@@ -9,7 +9,6 @@ import { useParams } from "next/navigation"
 import { swrKeys } from "@/fetchers/swrKeys"
 import { fetcher } from "@/fetchers/fetcher"
 import { IShow } from "@/typings/Show.type"
-import { IReview } from "@/typings/Review.type"
 
 interface IShowResp {
     show: IShow;
