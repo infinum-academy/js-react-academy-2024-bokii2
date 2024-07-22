@@ -14,7 +14,7 @@ interface IReviewInput {
     rating: number;
 }
 
-export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
+export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
     const {register, handleSubmit, setValue, setError, clearErrors, formState: { isSubmitting, errors }, reset, watch } = useForm<IReviewInput>();  
     
     const rating = watch('rating')
@@ -26,7 +26,7 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
             return;
         }
         const newReview: IReview = {
-            show_id: data.id,
+            show_id: id,
             comment: data.comment,
             rating: data.rating
         };
@@ -49,10 +49,11 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
                         setValue('rating', value);
                         if (value) clearErrors('rating');
                     }} />
-                    {errors.rating && <Alert status="error">{errors.rating?.message}</Alert>} 
+                    
+                    <Button isDisabled={isSubmitting} borderRadius='20px' padding='0 25px' type="submit">Post</Button>
                 </Flex>
+                {errors.rating && <Alert status="error">{errors.rating?.message}</Alert>} 
             </FormControl>
-            <Button isDisabled={isSubmitting} borderRadius='20px' padding='0 25px' type="submit">Post</Button>
         </chakra.form>
     )
 }
