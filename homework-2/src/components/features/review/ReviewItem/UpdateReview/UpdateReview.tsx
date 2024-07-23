@@ -38,11 +38,6 @@ export const UpdateReview = ({review}: IUpdateReviewResp) => {
 					<ModalBody>
                         <ReviewForm addShowReview={onUpdate} id={Number(review.id)} />
 					</ModalBody>
-
-					{/* <ModalFooter>
-						<Button variant="unstyled">No</Button>
-						<Button onClick={onDelete}>Yes</Button>
-					</ModalFooter> */}
 				</ModalContent>
 			</Modal>
 		</>

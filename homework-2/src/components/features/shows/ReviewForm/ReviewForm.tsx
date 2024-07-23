@@ -25,6 +25,7 @@ export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
             setError('rating', { type: 'manual', message: 'Please give a rating!' });
             return;
         }
+
         const newReview: IReview = {
             show_id: id,
             comment: data.comment,
@@ -34,7 +35,7 @@ export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
         addShowReview(newReview);
         reset();
         clearErrors('rating');
-}
+    }
 
     return (
         <chakra.form maxWidth='inherit' onSubmit={handleSubmit(addReview)} >

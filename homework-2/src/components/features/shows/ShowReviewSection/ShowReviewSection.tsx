@@ -32,11 +32,6 @@ export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
     
     if (error) return <div>failed to load</div>
 
-    if(isLoading){
-        if(!data)
-            return null;    
-    }
-
     return (
         <Flex backgroundColor='inherit' max-width='920px' align='left' margin='30px 0' gap={10}>
             <Heading as='h3' size='lg' color='white' alignItems='left'>

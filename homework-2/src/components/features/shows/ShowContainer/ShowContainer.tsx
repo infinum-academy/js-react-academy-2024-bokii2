@@ -9,7 +9,6 @@ import { useParams } from "next/navigation"
 import { swrKeys } from "@/fetchers/swrKeys"
 import { fetcher } from "@/fetchers/fetcher"
 import { IShow } from "@/typings/Show.type"
-import { IReview } from "@/typings/Review.type"
 
 interface IShowResp {
     show: IShow;
@@ -27,11 +26,6 @@ export const ShowContainer = () => {
     if (isLoading) return <div>loading...</div>
     
     if (error) return <div>failed to load</div>
-
-    if(!isLoading){
-        if(!data)
-            return null;    
-    }
 
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
