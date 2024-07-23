@@ -27,11 +27,6 @@ export const ShowContainer = () => {
     
     if (error) return <div>failed to load</div>
 
-    if(!isLoading){
-        if(!data)
-            return null;    
-    }
-
     return (
         <Flex flexDirection='column' alignItems='left' width='920px'>
             {data && <ShowDetails show={data.show} avgRating={averageRating} />}

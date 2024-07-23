@@ -1,9 +1,13 @@
+import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
-import { Container } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 
-export default function Layout({ children }: any) {
+export default function Layout({
+  children
+}: any) {
   return (
     <>
+      <AuthRedirect to='/login' condition='loggedOut'/>
       <SidebarNavigation />
       <Container>{children}</Container>
     </>
