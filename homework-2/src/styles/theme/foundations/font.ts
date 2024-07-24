@@ -1,10 +1,10 @@
 import "@fontsource/roboto"
 
-export const typography = {
+export const fonts = {
   fonts: {
-      heading: "'Roboto', sans-serif",
-      body: "'Roboto', sans-serif",
-    },
+    heading: "'Roboto', sans-serif",
+    body: "'Roboto', sans-serif",
+  },
 }
 
 export const sizes = {

@@ -7,21 +7,22 @@ import { IReview, IReviewList } from "@/typings/Review.type";
 import useSWR, { mutate } from "swr";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
-import { mutator } from "@/fetchers/mutators";
 import useSWRMutation from "swr/mutation";
 import { createReview } from "@/fetchers/review";
 import { sizes } from "@/styles/theme/foundations/font";
 
 interface IShowReviewSectionProps {
     id: number;
+    refetchShowDetails: () => void;
 }
 
-export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
+export const ShowReviewSection = ({id, refetchShowDetails}: IShowReviewSectionProps) => {
     const { data, error, isLoading } = useSWR<IReviewList>(swrKeys.getReviews(id.toString()), fetcher);
 
     const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
         onSuccess: () => {
             mutate(swrKeys.getReviews(id.toString()))
+            refetchShowDetails();
         }
     })
 
@@ -40,7 +41,7 @@ export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
             </Heading>
             <Flex direction='column' width='870px' justifySelf='right' >
                 <ReviewForm addShowReview={addReview} id={id} />
-                {data && <ReviewList reviewList={data.reviews} />}
+                {data && <ReviewList reviewList={data.reviews} refetchShowDetails={refetchShowDetails} />}
             </Flex>
         </Flex>
     )

@@ -7,9 +7,10 @@ import useSWRMutation from "swr/mutation";
 
 interface IDeleteButtonProps {
     review: IReview;
+    refetchShowDetails: () => void;
 }
 
-export const DeleteButton = ({ review }: IDeleteButtonProps) => {
+export const DeleteButton = ({ review, refetchShowDetails }: IDeleteButtonProps) => {
     const { trigger } = useSWRMutation(swrKeys.review(`${review.id}`), deleteReview, {
         onSuccess: () => {
             mutate(swrKeys.getReviews(review.show_id.toString()))
@@ -18,6 +19,7 @@ export const DeleteButton = ({ review }: IDeleteButtonProps) => {
 
     const onDelete = async () =>{
         await trigger(review);
+        refetchShowDetails();
     }
 
     return (

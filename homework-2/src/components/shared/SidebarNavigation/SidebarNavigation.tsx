@@ -17,7 +17,7 @@ export const SidebarNavigation = () => {
     const path = usePathname();
 
     return (
-        <Flex as='nav' flexDirection='column' backgroundColor={colors.darkpurple} color='white' minHeight="100vh" height='auto' width='20vw' position='absolute' top={0} left={0} p={30} gap={10} fontSize={sizes.title} fontWeight={weight.regular}>
+        <Flex as='nav' flexDirection='column' backgroundColor={colors.darkpurple} color='white' minHeight="100vh" height='auto' width='250px' position='absolute' top={0} left={0} p={30} gap={10} fontSize={sizes.title} fontWeight={weight.regular}>
             <Heading size={sizes.headline.web} mb={50} >TV SHOWS APP</Heading>
 
             <Button as={NextLink} href={`/all-shows`} isActive={path === '/all-shows'} variant="link" >All shows</Button>

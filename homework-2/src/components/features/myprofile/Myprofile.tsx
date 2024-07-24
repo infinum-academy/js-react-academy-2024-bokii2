@@ -2,6 +2,7 @@
 
 import { fetcher } from "@/fetchers/fetcher";
 import { swrKeys } from "@/fetchers/swrKeys";
+import { radius } from "@/styles/theme/foundations/radius";
 import { IUser } from "@/typings/User.type";
 import { Flex, Text, Image } from "@chakra-ui/react";
 import useSWR from "swr";
@@ -16,12 +17,12 @@ export const Myprofile = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <Flex direction='column'>
+        <Flex direction='column' justifyContent='center' gap={8}>
             {data && 
                 <>
                     <Text>Email</Text>
                     <Text>{data?.user.email}</Text>
-                    <Image alt="avatar" src={data?.user.image_url} />
+                    <Image alt="avatar" src={data?.user.image_url ? data?.user.image_url : 'https://i.pravatar.cc/260'} borderRadius={radius.full} />
                 </>
             }
         </Flex>

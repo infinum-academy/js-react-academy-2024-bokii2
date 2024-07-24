@@ -10,13 +10,14 @@ import { UpdateReview } from "./UpdateReview/UpdateReview";
 
 interface IReviewItemProps {
     review: IReview;
+    refetchShowDetails: () => void;
 }
 
 interface IReviewResp {
     user: IUser;
 }
 
-export const ReviewItem = ({review}: IReviewItemProps) => {
+export const ReviewItem = ({review, refetchShowDetails}: IReviewItemProps) => {
     const {data} = useSWR<IReviewResp>(swrKeys.me, fetcher);
 
     return (
@@ -31,8 +32,8 @@ export const ReviewItem = ({review}: IReviewItemProps) => {
                     </Flex>
                 </Flex>
                 <Text flexGrow={1} data-testid='comment'>{review.comment}</Text>
-                { review.user?.email === data?.user.email && <UpdateReview review={review} /> }
-                { review.user?.email === data?.user.email && <DeleteButton review={review} />}
+                { review.user?.email === data?.user.email && <UpdateReview review={review} refetchShowDetails={refetchShowDetails}/> }
+                { review.user?.email === data?.user.email && <DeleteButton review={review} refetchShowDetails={refetchShowDetails}/> }
             </Flex>
         </Card>
     )

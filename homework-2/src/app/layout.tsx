@@ -27,7 +27,7 @@ export default function RootLayout({
             display='flex'
             minH='100vh'
             height='100%'
-            padding="6rem 0"
+            padding="5rem 0"
             color="white"
             backgroundColor={colors.darkpurple}
             flexDirection="column"
