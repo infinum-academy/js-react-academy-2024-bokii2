@@ -8,7 +8,7 @@ interface IShowProps {
 
 export const ShowDetails = ({show, avgRating}: IShowProps) => {
     return (
-        <Card variant="showDetails" direction='column' margin='10px 0' width='1053px'>
+        <Card variant="showDetails" direction='column' width={{base: '1053px', mob: '343px'}}>
             <Image alt="showImg" src={show.image_url} height='439px' borderTopRadius='inherit' />
             <CardBody paddingLeft='30px' gap='8px'>
                 <Flex direction="column">

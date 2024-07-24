@@ -34,7 +34,7 @@ export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex backgroundColor='inherit' align='left' margin='30px 0' gap={20} justifyContent='space-between' width="1053px">
+        <Flex backgroundColor='inherit' align='left' margin='30px 10px' gap={20} justifyContent='space-between' width={{base: '1053px', mob: '343px'}}>
             <Heading fontSize={sizes.title} color='white' alignItems='left' width='175px'>
                 Reviews
             </Heading>
