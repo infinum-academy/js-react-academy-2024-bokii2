@@ -13,7 +13,7 @@ export const ShowDetails = ({show, avgRating}: IShowProps) => {
             <CardBody padding='30px' marginTop='20px' gap='8px'>
                 <Heading as='h2' size='2xl'>{show.title}</Heading>
                 <Text fontSize='sm' margin='15px 0'>{show.description}</Text>
-                <Heading as='h5' size='sm'>{ avgRating ? avgRating + " / 5" : "No rating yet"}</Heading>
+                <Heading as='h5' size='sm'>{ show.average_rating ? show.average_rating + " / 5" : "No rating yet"}</Heading>
             </CardBody>
         </Card>
     );
