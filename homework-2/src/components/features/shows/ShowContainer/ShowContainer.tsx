@@ -28,7 +28,7 @@ export const ShowContainer = () => {
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex flexDirection='column' alignItems='left'>
+        <Flex flexDirection='column' alignItems='left' width='1053px'>
             {data && <ShowDetails show={data.show} avgRating={averageRating} />}
             <ShowReviewSection id={Number(id)} />
         </Flex>

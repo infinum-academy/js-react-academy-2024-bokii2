@@ -1,4 +1,5 @@
 import { colors } from "@/styles/theme/foundations/colors";
+import { radius } from "@/styles/theme/foundations/radius";
 import { LockIcon, ViewIcon } from "@chakra-ui/icons";
 import { Button, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
 import { useState } from "react"
@@ -23,6 +24,7 @@ export const PasswordInput = ({isSub, props}: IPassowrdInputProps) => {
                 placeholder='Password'
                 disabled={isSub}
                 {...props}
+                borderRadius={radius.full}
             />
             <InputRightElement width='4.5rem'>
                 <ViewIcon onClick={handleClick} cursor='pointer' />

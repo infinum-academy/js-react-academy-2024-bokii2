@@ -3,6 +3,7 @@
 import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
+import { radius } from "@/styles/theme/foundations/radius";
 import { IRegisterForm } from "@/typings/Register.type";
 import { EmailIcon } from "@chakra-ui/icons";
 import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react"
@@ -52,7 +53,7 @@ export const RegisterForm = () => {
                             <InputLeftElement>
                                 <EmailIcon />
                             </InputLeftElement>
-                            <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
+                            <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} borderRadius={radius.full} />
                             {errors.email && <Alert status="error">{errors.email.message}</Alert>}
                         </InputGroup>
                     </FormControl>
