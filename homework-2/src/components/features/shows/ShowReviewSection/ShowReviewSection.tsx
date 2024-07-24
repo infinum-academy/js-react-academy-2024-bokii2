@@ -10,6 +10,7 @@ import { fetcher } from "@/fetchers/fetcher";
 import { mutator } from "@/fetchers/mutators";
 import useSWRMutation from "swr/mutation";
 import { createReview } from "@/fetchers/review";
+import { sizes } from "@/styles/theme/foundations/font";
 
 interface IShowReviewSectionProps {
     id: number;
@@ -33,11 +34,11 @@ export const ShowReviewSection = ({id}: IShowReviewSectionProps) => {
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex backgroundColor='inherit' max-width='920px' align='left' margin='30px 0' gap={10}>
-            <Heading as='h3' size='lg' color='white' alignItems='left'>
+        <Flex backgroundColor='inherit' align='left' margin='30px 0' gap={20} justifyContent='space-between' width="1053px">
+            <Heading fontSize={sizes.title} color='white' alignItems='left' width='175px'>
                 Reviews
             </Heading>
-            <Flex direction='column' flexGrow={1}  >
+            <Flex direction='column' width='870px' justifySelf='right' >
                 <ReviewForm addShowReview={addReview} id={id} />
                 {data && <ReviewList reviewList={data.reviews} />}
             </Flex>

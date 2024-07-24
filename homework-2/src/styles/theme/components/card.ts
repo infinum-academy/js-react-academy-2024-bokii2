@@ -1,39 +1,41 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { createMultiStyleConfigHelpers, defineStyleConfig } from "@chakra-ui/react";
+import { cardAnatomy } from "@chakra-ui/anatomy";
 
-export const Card = defineStyleConfig({
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(cardAnatomy.keys)
+
+
+export const Card = defineMultiStyleConfig({
     baseStyle: {
-    },
-    
-    sizes: {
-        webSmall: {
-            width: "240px",
-            height: "375px"
-        },
-        webHuge: {
-            width: "1053px",
-            height: "609px"
-        },
-        mobileSmall: {
-            width: "342px",
-            height: "480px"
-        },
-        mobileHuge: {
-            width: "343px",
-            height: "534px"
-        },
-    },
-
-    variants: {
-        lead: {
-            color: "purple",
+        container: {
             backgroundColor: "white",
+            color: "purple"
         },
-        uploadImg: {
-            boxSize: "big"
+        body: {
+            alignItems: "center"
         }
     },
 
-    defaultProps: {
-        
+    variants: {
+        showCard: {
+            container: {
+                width: "240px",
+                height: "375px",
+                overflow: "hidden"
+            }, 
+            
+        },
+        showDetails: {
+            container: {
+                width: "1053px",
+                height: "609px",
+                overflow: "hidden"
+            },
+            body: {
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+            }
+        }
     },
+
 })
