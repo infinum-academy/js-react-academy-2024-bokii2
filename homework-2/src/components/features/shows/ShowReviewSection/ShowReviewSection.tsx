@@ -12,15 +12,16 @@ import { createReview } from "@/fetchers/review";
 
 interface IShowReviewSectionProps {
     id: number;
-    setAvgRating: (avg: number) => void;
+    refetchShowDetails: () => void;
 }
 
-export const ShowReviewSection = ({id, setAvgRating}: IShowReviewSectionProps) => {
+export const ShowReviewSection = ({id, refetchShowDetails}: IShowReviewSectionProps) => {
     const { data, error, isLoading } = useSWR<IReviewList>(swrKeys.getReviews(id.toString()), fetcher);
 
     const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
         onSuccess: () => {
             mutate(swrKeys.getReviews(id.toString()))
+            refetchShowDetails();
         }
     })
 
@@ -39,7 +40,7 @@ export const ShowReviewSection = ({id, setAvgRating}: IShowReviewSectionProps) =
             </Heading>
             <Flex direction='column' flexGrow={1}  >
                 <ReviewForm addShowReview={addReview} id={id} />
-                {data && <ReviewList reviewList={data.reviews} setAvgRating={setAvgRating} />}
+                {data && <ReviewList reviewList={data.reviews} refetchShowDetails={refetchShowDetails} />}
             </Flex>
         </Flex>
     )

@@ -7,26 +7,15 @@ import { useEffect } from "react";
 
 interface IReviewListProps {
     reviewList: IReview[];
-    setAvgRating: (avg: number) => void;
+    refetchShowDetails: () => void;
 }
 
-export const ReviewList = ({reviewList, setAvgRating}: IReviewListProps) => {
-
-    useEffect(() => {
-        let sum = 0;
-        
-        reviewList.forEach((review) => {
-            sum += review.rating;
-        });
-        
-        setAvgRating(Number((sum / reviewList.length).toFixed(2)));
-    })
-
+export const ReviewList = ({reviewList, refetchShowDetails}: IReviewListProps) => {
     return (
         <Flex direction='column' mt={10}>
             {reviewList.map((review, index) => {
                 return (
-                    <ReviewItem review={review} key={index} />
+                    <ReviewItem review={review} key={index} refetchShowDetails={refetchShowDetails}/>
                 );
             })}
         </Flex>

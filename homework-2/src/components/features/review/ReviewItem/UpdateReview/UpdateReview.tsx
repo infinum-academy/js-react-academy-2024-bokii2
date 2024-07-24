@@ -9,9 +9,10 @@ import useSWRMutation from "swr/mutation";
 
 interface IUpdateReviewResp {
     review: IReview;
+    refetchShowDetails: () => void;
 }
 
-export const UpdateReview = ({review}: IUpdateReviewResp) => {
+export const UpdateReview = ({review, refetchShowDetails}: IUpdateReviewResp) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const { trigger } = useSWRMutation(swrKeys.review(`${review.id}`), updateReview, {
@@ -23,6 +24,7 @@ export const UpdateReview = ({review}: IUpdateReviewResp) => {
 
     const onUpdate = async (review: IReview) =>{
         await trigger(review);
+        refetchShowDetails();
     }
 
     return (
