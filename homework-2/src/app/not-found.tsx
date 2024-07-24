@@ -10,7 +10,5 @@ export default function NotFound() {
         router.push('/all-shows');
     }, [router]);
 
-    return (
-      <></>
-    )
+    return null;
 }
