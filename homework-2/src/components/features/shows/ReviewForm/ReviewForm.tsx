@@ -2,6 +2,7 @@ import { IReview } from "@/typings/Review.type"
 import { Alert, Button, chakra, Flex, FormControl, Text, Textarea } from "@chakra-ui/react"
 import { StarsRating } from "./StarsRating/StarsRating";
 import { useForm } from "react-hook-form";
+import { sizes } from "@/styles/theme/foundations/font";
 
 interface IReviewFormProps {
     addShowReview: (review: IReview) => void;
@@ -45,13 +46,13 @@ export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
             </FormControl>
             <FormControl isDisabled={isSubmitting}>
                 <Flex alignItems='center' my={4}  data-testid="rating" >
-                    <Text fontSize='2xl' mr={3} >Rating</Text>
+                    <Text fontSize={sizes.body.web} mr={3} >Rating</Text>
                     <StarsRating rating={rating} setRating={(value) => {
                         setValue('rating', value);
                         if (value) clearErrors('rating');
                     }} />
                     
-                    <Button isDisabled={isSubmitting} borderRadius='20px' padding='0 25px' type="submit">Post</Button>
+                    <Button isDisabled={isSubmitting} padding='0 25px' type="submit" ml='auto' >Post</Button>
                 </Flex>
                 {errors.rating && <Alert status="error">{errors.rating?.message}</Alert>} 
             </FormControl>

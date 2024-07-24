@@ -16,10 +16,11 @@ export const Myprofile = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <Flex>
+        <Flex direction='column'>
             {data && 
                 <>
-                    <Text>Email: {data?.user.email}</Text>
+                    <Text>Email</Text>
+                    <Text>{data?.user.email}</Text>
                     <Image alt="avatar" src={data?.user.image_url} />
                 </>
             }

@@ -1,4 +1,6 @@
-import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { colors } from "@/styles/theme/foundations/colors";
+import { LockIcon, ViewIcon } from "@chakra-ui/icons";
+import { Button, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
 import { useState } from "react"
 
 interface IPassowrdInputProps {
@@ -12,6 +14,9 @@ export const PasswordInput = ({isSub, props}: IPassowrdInputProps) => {
 
     return (
         <InputGroup size='md'>
+            <InputLeftElement>
+                <LockIcon />
+            </InputLeftElement>
             <Input
                 pr='4.5rem'
                 type={show ? 'text' : 'password'}
@@ -20,9 +25,7 @@ export const PasswordInput = ({isSub, props}: IPassowrdInputProps) => {
                 {...props}
             />
             <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={handleClick} disabled={isSub} >
-                {show ? 'Hide' : 'Show'}
-                </Button>
+                <ViewIcon onClick={handleClick} cursor='pointer' />
             </InputRightElement>
         </InputGroup>
     )

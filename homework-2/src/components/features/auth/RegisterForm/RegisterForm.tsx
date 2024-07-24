@@ -4,7 +4,8 @@ import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { IRegisterForm } from "@/typings/Register.type";
-import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, Text } from "@chakra-ui/react"
+import { EmailIcon } from "@chakra-ui/icons";
+import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react"
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -44,11 +45,16 @@ export const RegisterForm = () => {
                 </Alert>
             )}
             {!registered && (
-                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onRegister)}>
+                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='500px' height='500px' onSubmit={handleSubmit(onRegister)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
-                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
+                        <InputGroup>
+                            <InputLeftElement>
+                                <EmailIcon />
+                            </InputLeftElement>
+                            <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
+                            {errors.email && <Alert status="error">{errors.email.message}</Alert>}
+                        </InputGroup>
                     </FormControl>
                     <FormControl>
                         <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required' })}} />

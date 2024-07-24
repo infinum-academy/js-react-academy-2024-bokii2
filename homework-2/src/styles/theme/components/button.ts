@@ -26,13 +26,24 @@ export const Button = defineStyleConfig({
             backgroundColor: "white",
             fontSize: "button"
         },
-        uploadImg: {
-            boxSize: "big"
+        link: {
+            fontSize: "button",
+            backgroundColor: "transparent",
+            color: "white",
+            _active: {
+                backgroundColor: "purple",
+                color: "white"
+            },
+            _hover: {
+                textDecoration: "none"
+            },
+            padding: '5px',
+            textDecoration: 'none',
+            width: "140px"
         }
     },
 
     defaultProps: {
-        variant: "lead",
-        size: "medium"
-    },    
+        variant: 'lead'
+    }
 })

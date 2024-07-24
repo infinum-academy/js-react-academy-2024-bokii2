@@ -1,4 +1,4 @@
-import { Myprofile } from "@/components/features/myprofile/MyProfile";
+import { Myprofile } from "@/components/features/myprofile/Myprofile";
 import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
 
 export default function MyProfile() {

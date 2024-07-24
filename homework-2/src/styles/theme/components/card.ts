@@ -8,7 +8,8 @@ export const Card = defineMultiStyleConfig({
     baseStyle: {
         container: {
             backgroundColor: "white",
-            color: "purple"
+            color: "purple",
+            borderRadius: 15
         },
         body: {
             alignItems: "center"
