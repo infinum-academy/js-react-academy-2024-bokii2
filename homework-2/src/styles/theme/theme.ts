@@ -7,11 +7,6 @@ import { radius } from "./foundations/radius";
 import { Card } from "./components/card";
 
 const theme = extendTheme({
-    styles: {
-        global: {
-            fontFamily: fonts.fonts.body
-        }
-    },
     components: {Button, Card},
     colors,
     fonts,

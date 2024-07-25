@@ -1,5 +1,6 @@
 'use client'
 
+import { EmailInput } from "@/components/shared/EmailInput/EmailInput";
 import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
@@ -49,13 +50,8 @@ export const RegisterForm = () => {
                 <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='500px' height='500px' onSubmit={handleSubmit(onRegister)}>
                     <Heading>TV SHOWS APP</Heading>
                     <FormControl>
-                        <InputGroup>
-                            <InputLeftElement>
-                                <EmailIcon />
-                            </InputLeftElement>
-                            <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} borderRadius={radius.full} />
-                            {errors.email && <Alert status="error">{errors.email.message}</Alert>}
-                        </InputGroup>
+                        <EmailInput isSub={isSubmitting} props={{...register('email', { required: 'Email is required' })}}/>
+                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
                     </FormControl>
                     <FormControl>
                         <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required' })}} />

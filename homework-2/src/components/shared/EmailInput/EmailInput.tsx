@@ -1,34 +1,28 @@
 import { colors } from "@/styles/theme/foundations/colors";
 import { radius } from "@/styles/theme/foundations/radius";
-import { LockIcon, ViewIcon } from "@chakra-ui/icons";
+import { EmailIcon, LockIcon, ViewIcon } from "@chakra-ui/icons";
 import { Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
 import { useState } from "react"
 
-interface IPassowrdInputProps {
+interface IEmailInputProps {
     isSub: boolean;
     props: any;
 }
 
-export const PasswordInput = ({isSub, props}: IPassowrdInputProps) => {
-    const [show, setShow] = useState(false)
-    const handleClick = () => setShow(!show)
-
+export const EmailInput = ({isSub, props}: IEmailInputProps) => {
     return (
         <InputGroup size='md'>
             <InputLeftElement>
-                <LockIcon />
+                <EmailIcon />
             </InputLeftElement>
             <Input
                 pr='4.5rem'
-                type={show ? 'text' : 'password'}
-                placeholder='Password'
+                type='email'
+                placeholder='Email'
                 disabled={isSub}
                 {...props}
                 borderRadius={radius.full}
             />
-            <InputRightElement width='4.5rem'>
-                <ViewIcon onClick={handleClick} cursor='pointer' />
-            </InputRightElement>
         </InputGroup>
     )
 }
