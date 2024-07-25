@@ -5,14 +5,16 @@ import { useForm } from "react-hook-form";
 
 interface IReviewFormProps {
     addShowReview: (review: IReview) => void;
+    id: number;
 }
 
 interface IReviewInput {
+    id: number;
     comment: string;
     rating: number;
 }
 
-export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
+export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
     const {register, handleSubmit, setValue, setError, clearErrors, formState: { isSubmitting, errors }, reset, watch } = useForm<IReviewInput>();  
     
     const rating = watch('rating')
@@ -23,7 +25,9 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
             setError('rating', { type: 'manual', message: 'Please give a rating!' });
             return;
         }
+
         const newReview: IReview = {
+            show_id: id,
             comment: data.comment,
             rating: data.rating
         };
@@ -31,7 +35,7 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
         addShowReview(newReview);
         reset();
         clearErrors('rating');
-}
+    }
 
     return (
         <chakra.form maxWidth='inherit' onSubmit={handleSubmit(addReview)} >
@@ -40,7 +44,7 @@ export const ReviewForm = ({addShowReview}: IReviewFormProps) => {
                 {errors.comment && <Alert status="error">{errors.comment?.message}</Alert>}
             </FormControl>
             <FormControl isDisabled={isSubmitting}>
-                <Flex alignItems='center' my={4} >
+                <Flex alignItems='center' my={4}  data-testid="rating" >
                     <Text fontSize='2xl' mr={3} >Rating</Text>
                     <StarsRating rating={rating} setRating={(value) => {
                         setValue('rating', value);
