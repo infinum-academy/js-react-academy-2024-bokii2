@@ -31,7 +31,12 @@ export const ShowContainer = () => {
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex flexDirection='column' alignItems='left' width={{base: '1053px', mob: '343px'}} margin='30px' padding='10px' justifyContent='space-around' gap={8} flex="0 0 auto">
+        <Flex flexDirection='column' alignItems='flex-start'
+            width={{base: '343px', xl: '1053px'}}
+            overflow='hidden'
+            gap={8}
+            margin={['0 16px', '0 31px']}
+        >
             {data && <ShowDetails show={data.show}/>}
             <ShowReviewSection id={Number(id)} refetchShowDetails={refetchShowDetails} />
         </Flex>

@@ -5,19 +5,16 @@ import { fonts, sizes, weight } from "./foundations/font";
 import { Button } from "./components/button";
 import { radius } from "./foundations/radius";
 import { Card } from "./components/card";
+import { breakpoints } from "./foundations/breakpoints";
 
 const theme = extendTheme({
-    styles: {
-        global: {
-            fontFamily: fonts.fonts.body
-        }
-    },
     components: {Button, Card},
     colors,
     fonts,
     sizes,
     weight,
-    radius
+    radius,
+    breakpoints
 })
 
 export default theme;

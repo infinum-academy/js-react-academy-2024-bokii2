@@ -35,11 +35,14 @@ export const ShowReviewSection = ({id, refetchShowDetails}: IShowReviewSectionPr
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex backgroundColor='inherit' align='left' margin='30px 10px' gap={20} justifyContent='space-between' width={{base: '1053px', mob: '343px'}}>
+        <Flex 
+        // direction={['column', 'row']} 
+        direction={{base: 'column', xl: 'row'}}
+        backgroundColor='inherit' align='left' gap={20} justifyContent='space-between' maxWidth='100%'>
             <Heading fontSize={sizes.title} color='white' alignItems='left' width='175px'>
                 Reviews
             </Heading>
-            <Flex direction='column' width='870px' justifySelf='right' >
+            <Flex direction='column'justifySelf='right'>
                 <ReviewForm addShowReview={addReview} id={id} />
                 {data && <ReviewList reviewList={data.reviews} refetchShowDetails={refetchShowDetails} />}
             </Flex>

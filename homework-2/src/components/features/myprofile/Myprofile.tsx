@@ -17,7 +17,7 @@ export const Myprofile = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <Flex direction='column' justifyContent='center' gap={8}>
+        <Flex direction='column' justifyContent='center' gap={8} margin={5}>
             {data && 
                 <>
                     <Text>Email</Text>
