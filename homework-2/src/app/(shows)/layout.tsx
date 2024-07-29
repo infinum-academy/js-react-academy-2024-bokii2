@@ -1,6 +1,8 @@
 import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
+import { Header } from "@/components/shared/Header/Header";
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
-import { Container, Flex } from "@chakra-ui/react";
+import { colors } from "@/styles/theme/foundations/colors";
+import { Box, Container, Flex } from "@chakra-ui/react";
 
 export default function Layout({
   children
@@ -8,8 +10,14 @@ export default function Layout({
   return (
     <>
       <AuthRedirect to='/login' condition='loggedOut'/>
-      <SidebarNavigation />
-      <Container>{children}</Container>
+      <Flex direction={{base: 'column', md: 'row'}} minWidth='100%'>
+        <Box>
+          <SidebarNavigation />
+        </Box>
+        <Box margin='auto'>
+          {children}
+        </Box>
+      </Flex>
     </>
   );
 }

@@ -1,17 +1,24 @@
 'use client'
 
+import { Header } from "@/components/shared/Header/Header";
 import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
+import { colors } from "@/styles/theme/foundations/colors";
+import { radius } from "@/styles/theme/foundations/radius";
 import { ILoginForm } from "@/typings/Login.type";
-import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, Spinner, Text } from "@chakra-ui/react"
+import { EmailIcon } from "@chakra-ui/icons";
+import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, InputGroup, InputLeftElement, Spinner, Text } from "@chakra-ui/react"
+import { error } from "console";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWRMutation from "swr/mutation";
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: {isSubmitting, errors}, setError } = useForm<ILoginForm>();
+    const router = useRouter();
     const { trigger } = useSWRMutation(swrKeys.login, mutator<ILoginForm>, {
         onSuccess: (data) => {
             localStorage.setItem('authorization-header', JSON.stringify({
@@ -20,6 +27,7 @@ export const LoginForm = () => {
                 'uid': data.authHeaders.uid
             }));
             setLogged(true);
+            router.push('/all-shows')
         },
         onError: () => {
             setError("invalidError", { type: 'manual', message: 'Invalid email or password' });
@@ -40,19 +48,21 @@ export const LoginForm = () => {
                 </Alert>
             )}
             {!logged && (
-                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='920px' onSubmit={handleSubmit(onLogin)}>
-                    <Heading>TV SHOWS APP</Heading>
+                <chakra.form display='flex' flexDirection='column' backgroundColor={colors.purple} padding={10} borderRadius={15} gap={5} width={{base: '100%', sm:'500px'}} height='500px' alignItems='center' onSubmit={handleSubmit(onLogin)} >
+                    <Header />
                     <FormControl>
-                        <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} />
-                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
+                        <InputGroup>
+                            <InputLeftElement>
+                                <EmailIcon />
+                            </InputLeftElement>
+                            <Input required type="email" placeholder="Email" {...register('email', { required: 'Email is required' })} disabled={isSubmitting} borderRadius={radius.full} isInvalid={!!errors.email} errorBorderColor={errors.email ? colors.pink : 'gray.300'} />
+                            {errors.email && <FormHelperText color={errors.email ? colors.pink : 'gray.300'}>{errors.email.message}</FormHelperText>}
+                        </InputGroup>
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required'})}} />
-                        <FormHelperText>
-                            At least 8 characters
-                        </FormHelperText>
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required'})}} errors={errors.password} />
+                        {errors.password && <FormHelperText color={errors.email ? colors.pink : 'gray.300'}>{errors.password.message}</FormHelperText>}
                     </FormControl>
-                    {errors.password && <Alert status="error">{errors.password.message}</Alert>}
                     <Button type="submit" disabled={isSubmitting}>Log in</Button>
                     {errors.invalidError && <Alert status="error">{errors.invalidError.message}</Alert>}
                     <Text>Don&apos;t have an account? <Link href='/register'>Register</Link></Text>

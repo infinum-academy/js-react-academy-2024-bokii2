@@ -12,7 +12,7 @@ interface IReviewListProps {
 
 export const ReviewList = ({reviewList, refetchShowDetails}: IReviewListProps) => {
     return (
-        <Flex direction='column' mt={10}>
+        <Flex direction='column' mt={10} width={{base: '343px', xl: '870px'}}>
             {reviewList.map((review, index) => {
                 return (
                     <ReviewItem review={review} key={index} refetchShowDetails={refetchShowDetails}/>

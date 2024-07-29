@@ -4,6 +4,10 @@ import { IReview } from "@/typings/Review.type"
 import { DeleteIcon } from "@chakra-ui/icons";
 import useSWR, { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
+import { Text } from "@chakra-ui/react"
+import { sizes } from "@/styles/theme/foundations/font";
+import { colors } from "@/styles/theme/foundations/colors";
+
 
 interface IDeleteButtonProps {
     review: IReview;
@@ -24,7 +28,7 @@ export const DeleteButton = ({ review, refetchShowDetails }: IDeleteButtonProps)
 
     return (
         <>
-            <DeleteIcon onClick={() => onDelete()} boxSize={7} mr='10px' data-testid="delete-button" cursor='pointer' />
+            <Text color={colors.purple} onClick={() => onDelete()} size={sizes.button}>Delete</Text>
         </>
     )
 }

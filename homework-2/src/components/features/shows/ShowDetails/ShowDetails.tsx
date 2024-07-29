@@ -1,21 +1,24 @@
+import { sizes } from "@/styles/theme/foundations/font";
 import { IShow } from "@/typings/Show.type";
-import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, CardBody, Flex, Heading, Image, Text } from "@chakra-ui/react";
 
 interface IShowProps {
     show: IShow;
 }
 
 export const ShowDetails = ({show}: IShowProps) => {
-    console.log('Avg', show.average_rating)
-    console.log('No', show.no_of_reviews)
-
     return (
-        <Card width='100%' direction='column' borderRadius='10px' backgroundColor='white' color='#5935bc'>
-            <Image alt="showImg" src={show.image_url} borderTopRadius='inherit' />
-            <CardBody padding='30px' marginTop='20px' gap='8px'>
-                <Heading as='h2' size='2xl'>{show.title}</Heading>
-                <Text fontSize='sm' margin='15px 0'>{show.description}</Text>
-                <Heading as='h5' size='sm'>{ show.average_rating ? show.average_rating.toFixed(2) + " / 5" : "No rating yet"}</Heading>
+        <Card variant="showDetails" direction='column' width={{base: '343px', xl: '1053px'}} height='fit-content'>
+            <Image alt="showImg" src={show.image_url} height='439px' borderTopRadius='inherit' />
+            <CardBody paddingLeft='30px' gap='8px' height='fit-content'>
+                <Flex direction={{base: 'column', xl: 'row'}} alignItems={{xl: 'center'}}>
+                    <Flex direction="column" gap={2}>
+                        <Heading fontSize={{base: sizes.headline.mobile, xl: sizes.headline.web}}>{show.title}</Heading>
+                        <Heading fontSize={{base: sizes.body.mobile, xl: sizes.body.web}}>{show.average_rating ? show.average_rating.toFixed(2) + " / 5" : "No rating yet"}</Heading>
+                    </Flex>
+                    
+                    <Text fontSize={{base: sizes.body.mobile, xl: sizes.body.web}} margin='15px 0' marginLeft={{xl: 20}}>{show.description}</Text>
+                </Flex>
             </CardBody>
         </Card>
     );

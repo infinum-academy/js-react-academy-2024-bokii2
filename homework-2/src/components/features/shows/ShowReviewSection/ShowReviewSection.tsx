@@ -9,6 +9,7 @@ import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
 import useSWRMutation from "swr/mutation";
 import { createReview } from "@/fetchers/review";
+import { sizes } from "@/styles/theme/foundations/font";
 
 interface IShowReviewSectionProps {
     id: number;
@@ -34,11 +35,14 @@ export const ShowReviewSection = ({id, refetchShowDetails}: IShowReviewSectionPr
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex backgroundColor='inherit' max-width='920px' align='left' margin='30px 0' gap={10}>
-            <Heading as='h3' size='lg' color='white' alignItems='left'>
+        <Flex 
+        // direction={['column', 'row']} 
+        direction={{base: 'column', xl: 'row'}}
+        backgroundColor='inherit' align='left' gap={20} justifyContent='space-between' maxWidth='100%'>
+            <Heading fontSize={sizes.title} color='white' alignItems='left' width='175px'>
                 Reviews
             </Heading>
-            <Flex direction='column' flexGrow={1}  >
+            <Flex direction='column'justifySelf='right'>
                 <ReviewForm addShowReview={addReview} id={id} />
                 {data && <ReviewList reviewList={data.reviews} refetchShowDetails={refetchShowDetails} />}
             </Flex>

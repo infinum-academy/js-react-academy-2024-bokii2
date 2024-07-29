@@ -31,7 +31,12 @@ export const ShowContainer = () => {
     if (error) return <div>failed to load</div>
 
     return (
-        <Flex flexDirection='column' alignItems='left' width='920px'>
+        <Flex flexDirection='column' alignItems='flex-start'
+            width={{base: '343px', xl: '1053px'}}
+            overflow='hidden'
+            gap={8}
+            margin={'31px'}
+        >
             {data && <ShowDetails show={data.show}/>}
             <ShowReviewSection id={Number(id)} refetchShowDetails={refetchShowDetails} />
         </Flex>
