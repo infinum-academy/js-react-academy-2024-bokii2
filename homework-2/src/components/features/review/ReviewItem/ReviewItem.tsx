@@ -8,6 +8,7 @@ import { fetcher } from "@/fetchers/fetcher";
 import { IUser } from "@/typings/User.type";
 import { UpdateReview } from "./UpdateReview/UpdateReview";
 import { ReviewButton } from "./ReviewButton/ReviewButton";
+import { radius } from "@/styles/theme/foundations/radius";
 
 interface IReviewItemProps {
     review: IReview;
@@ -23,9 +24,9 @@ export const ReviewItem = ({review, refetchShowDetails}: IReviewItemProps) => {
 
     return (
         <Card backgroundColor='#381484' color='white' borderRadius={20} margin='8px 0' width={{base: '343px', xl: '870px'}} padding='30px'>
-            <Flex direction={{base: 'column', xl: 'row'}} alignItems='center' width='100%' gap={8} >
+            <Flex direction={{base: 'column', xl: 'row'}} alignItems='center' width='100%' gap={8}>
                 <Flex direction='row' gap={8}>
-                    <Image alt="avatar" src='https://i.pravatar.cc/50' borderRadius={15} />
+                    <Image alt="avatar" src='https://i.pravatar.cc/50' borderRadius={radius.full} />
                     <Flex direction='column'>
                         <Text mb='5px'>{review.user?.email}</Text>
                         <Flex direction='row'>
@@ -35,7 +36,7 @@ export const ReviewItem = ({review, refetchShowDetails}: IReviewItemProps) => {
                     </Flex>
                 </Flex>
                 <Flex justifyContent='space-between' flexGrow={1}>
-                    <Text flexGrow={1} data-testid='comment'>{review.comment}</Text>
+                    <Text data-testid='comment'>{review.comment}</Text>
                     {
                         review.user?.email === data?.user.email && <ReviewButton review={review} refetchShowDetails={refetchShowDetails} />
                     }
