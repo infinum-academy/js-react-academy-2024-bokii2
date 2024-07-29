@@ -7,9 +7,10 @@ import { useState } from "react"
 interface IEmailInputProps {
     isSub: boolean;
     props: any;
+    errors: any;
 }
 
-export const EmailInput = ({isSub, props}: IEmailInputProps) => {
+export const EmailInput = ({isSub, props, errors}: IEmailInputProps) => {
     return (
         <InputGroup size='md'>
             <InputLeftElement>
@@ -22,6 +23,7 @@ export const EmailInput = ({isSub, props}: IEmailInputProps) => {
                 disabled={isSub}
                 {...props}
                 borderRadius={radius.full}
+                isInvalid={!!errors} errorBorderColor={errors ? colors.pink : 'gray.300'}
             />
         </InputGroup>
     )

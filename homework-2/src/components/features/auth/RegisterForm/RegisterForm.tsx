@@ -1,13 +1,13 @@
 'use client'
 
 import { EmailInput } from "@/components/shared/EmailInput/EmailInput";
+import { Header } from "@/components/shared/Header/Header";
 import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
-import { radius } from "@/styles/theme/foundations/radius";
+import { colors } from "@/styles/theme/foundations/colors";
 import { IRegisterForm } from "@/typings/Register.type";
-import { EmailIcon } from "@chakra-ui/icons";
-import { Alert, Button, chakra, FormControl, FormHelperText, Heading, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react"
+import { Alert, Button, chakra, FormControl, FormHelperText, Text } from "@chakra-ui/react"
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -47,21 +47,27 @@ export const RegisterForm = () => {
                 </Alert>
             )}
             {!registered && (
-                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width='500px' height='500px' onSubmit={handleSubmit(onRegister)}>
-                    <Heading>TV SHOWS APP</Heading>
+                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width={{base: '100%', sm:'500px'}} height='500px' onSubmit={handleSubmit(onRegister)}>
+                    <Header />
                     <FormControl>
-                        <EmailInput isSub={isSubmitting} props={{...register('email', { required: 'Email is required' })}}/>
-                        {errors.email && <Alert status="error">{errors.email.message}</Alert>}
+                        <EmailInput isSub={isSubmitting} props={{...register('email', { required: 'Email is required' })}} errors={errors.email}/>
+                        {errors.email && <FormHelperText color={errors.email ? colors.pink : 'gray.300'}>{errors.email.message}</FormHelperText>}
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required' })}} />
-                        <FormHelperText>
-                            At least 8 characters
-                        </FormHelperText>
-                        {errors.password && <Alert status="error">{errors.password.message}</Alert>}
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password', { required: 'Password is required' })}} errors={errors.password} />
+                        {errors.password ? (
+                            <FormHelperText color={errors.email ? colors.pink : 'gray.300'}>{errors.password.message}</FormHelperText>
+                        ) : (
+                            <FormHelperText>At least 8 characters</FormHelperText> 
+                        )}                        
                     </FormControl>
                     <FormControl>
-                        <PasswordInput isSub={isSubmitting}  props={{...register('password_conformation', { required: 'Password confirmation is required' })}} />
+                        <PasswordInput isSub={isSubmitting}  props={{...register('password_conformation', { required: 'Password confirmation is required' })}} errors={errors.password_conformation} />
+                        {errors.password_conformation ? (
+                            <FormHelperText color={errors.email ? colors.pink : 'gray.300'}>{errors.password_conformation.message}</FormHelperText>
+                        ) : (
+                            <FormHelperText>At least 8 characters</FormHelperText> 
+                        )} 
                         {errors.password_conformation && <Alert status="error">{errors.password_conformation.message}</Alert>}
                     </FormControl>
                     <Button type="submit">Sign up</Button>

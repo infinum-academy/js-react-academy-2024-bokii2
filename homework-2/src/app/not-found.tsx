@@ -1,5 +1,6 @@
 'use client'
 
+import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

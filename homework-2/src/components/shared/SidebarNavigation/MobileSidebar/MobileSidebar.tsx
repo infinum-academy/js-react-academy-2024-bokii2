@@ -1,12 +1,15 @@
+'use client'
+
+import { Stepper } from "@/components/features/stepper/Stepper"
 import { colors } from "@/styles/theme/foundations/colors"
 import { sizes, weight } from "@/styles/theme/foundations/font"
 import { HamburgerIcon } from "@chakra-ui/icons"
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Input, useDisclosure } from "@chakra-ui/react"
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerOverlay, Flex, useDisclosure } from "@chakra-ui/react"
 import NextLink from 'next/link';
 import { usePathname, useRouter } from "next/navigation";
 
 
-export const DrawerExample = () => {
+export const MobileSidebar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const path = usePathname();
     const router = useRouter();
@@ -25,19 +28,20 @@ export const DrawerExample = () => {
           onClose={onClose}
         >
           <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
+          <DrawerContent backgroundColor={colors.darkpurple} maxHeight='100vh' borderLeftRadius='20px' mt={10}>
+            <DrawerCloseButton color='white'/>
   
             <DrawerBody>
-                <Flex as='nav' flexDirection='column' backgroundColor={colors.darkpurple} color='white' height='auto' width='339px' position='absolute' top={0} left={0} p={30} gap={10} fontSize={sizes.headline} fontWeight={weight.regular}>
+                <Flex as='nav' flexDirection='column' color='white' height='auto' width='339px' position='absolute' top={30} p={0} gap={10} fontSize={sizes.headline} fontWeight={weight.regular}>
                     <Button as={NextLink} href={`/all-shows`} isActive={path === '/all-shows'} variant="link" >All shows</Button>
                     <Button as={NextLink} href={`/top-rated`} isActive={path === '/top-rated'} variant="link" >Top rated</Button>
                     <Button as={NextLink} href={`/my-profile`} isActive={path === '/my-profile'} variant="link" >My profile</Button>
+                    <Stepper />
                 </Flex>
             </DrawerBody>
   
             <DrawerFooter>
-                <Button onClick={handleLogout} cursor='pointer' variant="link" >Log out</Button>
+                <Button onClick={handleLogout} cursor='pointer' variant="link">Log out</Button>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>

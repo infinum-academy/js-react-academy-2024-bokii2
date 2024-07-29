@@ -1,8 +1,11 @@
 import { defineStyleConfig } from "@chakra-ui/react";
+import { weight } from "../foundations/font";
+import { radius } from "../foundations/radius";
 
 export const Button = defineStyleConfig({
     baseStyle: {
-        borderRadius: "full"
+        borderRadius: radius.full,
+        fontWeight: weight.regular
     },
     
     sizes: {

@@ -3,7 +3,6 @@
 import { StepperContextProvider } from "@/components/features/stepper/components/StepperContextProvider";
 import { AuthRedirect } from "@/components/shared/AuthRedirect/AuthRedirect";
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
-import { colors } from "@/styles/theme/foundations/colors";
 import { Box, Flex } from "@chakra-ui/react";
 
 export default function Layout({
@@ -12,14 +11,16 @@ export default function Layout({
   return (
     <>
       <AuthRedirect to='/login' condition='loggedOut'/>
-        <StepperContextProvider>
-          <Flex backgroundColor={colors.darkpurple}>
-            <Box width="20%"><SidebarNavigation /></Box>
-            <Box width="80%">
-                {children}
-            </Box>
-          </Flex>
-        </StepperContextProvider>
+      <StepperContextProvider>
+        <Flex direction={{base: 'column', md: 'row'}} minWidth='100%'>
+          <Box>
+            <SidebarNavigation />
+          </Box>
+          <Box margin='auto'>
+            {children}
+          </Box>
+        </Flex>
+      </StepperContextProvider>
     </>
   );
 }

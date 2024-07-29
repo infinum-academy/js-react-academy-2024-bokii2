@@ -1,9 +1,11 @@
 import { ReviewForm } from "@/components/features/shows/ReviewForm/ReviewForm";
 import { updateReview } from "@/fetchers/review";
 import { swrKeys } from "@/fetchers/swrKeys";
+import { colors } from "@/styles/theme/foundations/colors";
+import { sizes } from "@/styles/theme/foundations/font";
 import { IReview } from "@/typings/Review.type";
 import { EditIcon } from "@chakra-ui/icons";
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react"
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, Text } from "@chakra-ui/react"
 import { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
 
@@ -29,7 +31,7 @@ export const UpdateReview = ({review, refetchShowDetails}: IUpdateReviewResp) =>
 
     return (
         <>
-			<EditIcon w="48px" onClick={onOpen} boxSize={7} cursor='pointer' />
+            <Text color={colors.purple} onClick={onOpen} size={sizes.button}>Edit</Text>
 
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />

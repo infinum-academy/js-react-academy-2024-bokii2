@@ -6,7 +6,7 @@ import { StepperResults } from "./StepperResults";
 export const StepperSteps = () => {
     const { currentStep, predefinedSteps } = useContext(StepperContext);
 
-    if(currentStep < predefinedSteps) {
+    if(currentStep < predefinedSteps - 1) {
         return <StepperStep />
     } else {
         return <StepperResults />
