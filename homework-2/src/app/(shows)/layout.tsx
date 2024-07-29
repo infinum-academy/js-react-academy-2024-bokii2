@@ -10,14 +10,13 @@ export default function Layout({
   return (
     <>
       <AuthRedirect to='/login' condition='loggedOut'/>
-      <Flex direction='column' justifyContent='left'>
-        <Header />
-        <Flex direction='row' justifyContent='space-around' backgroundColor={colors.darkpurple}>
+      <Flex direction={{base: 'column', md: 'row'}} minWidth='100%'>
+        <Box>
           <SidebarNavigation />
-          <Box>
-            {children}
-          </Box>
-        </Flex>
+        </Box>
+        <Box margin='auto'>
+          {children}
+        </Box>
       </Flex>
     </>
   );

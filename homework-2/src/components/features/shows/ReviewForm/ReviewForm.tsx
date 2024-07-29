@@ -39,9 +39,7 @@ export const ReviewForm = ({addShowReview, id}: IReviewFormProps) => {
     }
 
     return (
-        <chakra.form 
-            width={{base: '343px', xl: '870px'}}
-            onSubmit={handleSubmit(addReview)} >
+        <chakra.form width={{base: '343px', xl: '870px'}} onSubmit={handleSubmit(addReview)} >
             <FormControl isDisabled={isSubmitting}>
                 <Textarea {...register('comment', {required: "Please leave a comment!"})} backgroundColor='white' color='black' width='100%' alignContent='center' placeholder="Enter review" disabled={isSubmitting} />
                 {errors.comment && <Alert status="error">{errors.comment?.message}</Alert>}

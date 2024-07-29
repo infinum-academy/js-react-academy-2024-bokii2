@@ -19,7 +19,7 @@ export const DesktopSidebar = () => {
     const path = usePathname();
 
     return (
-        <Flex as='nav' flexDirection='column' backgroundColor={colors.darkpurple} color='white' mt={0} ml={0} mr='30px' p={30} gap={10} fontSize={sizes.title} fontWeight={weight.regular}>
+        <Flex as='nav' flexDirection='column' backgroundColor={colors.darkpurple} color='white' mt={0} ml={0} left={0} mr='30px' minHeight='100vh' p={30} gap={10} fontSize={sizes.title} fontWeight={weight.regular}>
             <Button as={NextLink} href={`/all-shows`} isActive={path === '/all-shows'} variant="link" >All shows</Button>
             <Button as={NextLink} href={`/top-rated`} isActive={path === '/top-rated'} variant="link" >Top rated</Button>
             <Button as={NextLink} href={`/my-profile`} isActive={path === '/my-profile'} variant="link" >My profile</Button>

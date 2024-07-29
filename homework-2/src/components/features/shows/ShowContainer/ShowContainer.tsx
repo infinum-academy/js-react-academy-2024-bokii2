@@ -35,7 +35,7 @@ export const ShowContainer = () => {
             width={{base: '343px', xl: '1053px'}}
             overflow='hidden'
             gap={8}
-            margin={['0 16px', '0 31px']}
+            margin={'31px'}
         >
             {data && <ShowDetails show={data.show}/>}
             <ShowReviewSection id={Number(id)} refetchShowDetails={refetchShowDetails} />

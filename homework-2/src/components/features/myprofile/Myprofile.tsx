@@ -4,7 +4,7 @@ import { fetcher } from "@/fetchers/fetcher";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { radius } from "@/styles/theme/foundations/radius";
 import { IUser } from "@/typings/User.type";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, Box } from "@chakra-ui/react";
 import useSWR from "swr";
 
 interface IMyprofile {
@@ -17,7 +17,7 @@ export const Myprofile = () => {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <Flex direction='column' justifyContent='center' gap={8} margin={5}>
+        <Flex direction='column' justifyContent='center' width='fit-content' gap={8} margin={5}>
             {data && 
                 <>
                     <Text>Email</Text>
