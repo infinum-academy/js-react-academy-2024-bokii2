@@ -3,6 +3,7 @@
 import { EmailInput } from "@/components/shared/EmailInput/EmailInput";
 import { Header } from "@/components/shared/Header/Header";
 import { PasswordInput } from "@/components/shared/PasswordInput/PasswordInput";
+import { Spin } from "@/components/shared/Spinner/Spinner";
 import { mutator } from "@/fetchers/mutators";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { colors } from "@/styles/theme/foundations/colors";
@@ -40,10 +41,7 @@ export const LoginForm = () => {
     return (
         <>
             {logged && (
-                <Alert status="success" textColor='black'>
-                    <Spinner />
-                    Login succeed! Please wait to be proceed to the TV shows!
-                </Alert>
+                <Spin message="Login succeed! Please wait to be proceed to the TV shows!" />
             )}
             {!logged && (
                 <chakra.form display='flex' flexDirection='column' backgroundColor={colors.purple} padding={10} borderRadius={15} gap={5} width={{base: '100%', sm:'500px'}} height='500px' alignItems='center' onSubmit={handleSubmit(onLogin)} >

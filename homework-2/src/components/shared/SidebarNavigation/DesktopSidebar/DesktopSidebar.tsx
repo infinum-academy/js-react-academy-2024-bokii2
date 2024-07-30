@@ -26,7 +26,7 @@ export const DesktopSidebar = () => {
             <Button as={NextLink} href={`/my-profile`} isActive={path === '/my-profile'} variant="link" >My profile</Button>
             <Stepper />
 
-            <Button type="button" onClick={handleLogout} cursor='pointer' variant="link" mt='auto'>Log out</Button>
+            <Button type="button" onClick={handleLogout} cursor='pointer' variant="link" mt='auto' mb={20}>Log out</Button>
         </Flex>
     )
 }   

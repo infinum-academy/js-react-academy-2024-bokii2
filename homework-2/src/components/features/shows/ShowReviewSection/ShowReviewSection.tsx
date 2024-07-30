@@ -10,6 +10,8 @@ import { fetcher } from "@/fetchers/fetcher";
 import useSWRMutation from "swr/mutation";
 import { createReview } from "@/fetchers/review";
 import { sizes } from "@/styles/theme/foundations/font";
+import { Spin } from "@/components/shared/Spinner/Spinner";
+import { Error } from "@/components/shared/Error/Error";
 
 interface IShowReviewSectionProps {
     id: number;
@@ -30,15 +32,14 @@ export const ShowReviewSection = ({id, refetchShowDetails}: IShowReviewSectionPr
         await trigger(newReview);
     }
     
-    if (isLoading) return <div>loading...</div>
+    if (isLoading) return <Spin message="Loading the reviews..." />
     
-    if (error) return <div>failed to load</div>
+    if (error) return <Error />
 
     return (
         <Flex 
-        // direction={['column', 'row']} 
-        direction={{base: 'column', xl: 'row'}}
-        backgroundColor='inherit' align='left' gap={20} justifyContent='space-between' maxWidth='100%'>
+            direction={{base: 'column', xl: 'row'}}
+            backgroundColor='inherit' align='left' gap={20} justifyContent='space-between' maxWidth='100%'>
             <Heading fontSize={sizes.title} color='white' alignItems='left' width='175px'>
                 Reviews
             </Heading>
