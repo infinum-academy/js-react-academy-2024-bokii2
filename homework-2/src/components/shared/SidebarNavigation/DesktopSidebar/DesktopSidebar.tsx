@@ -1,8 +1,9 @@
 'use client'
 
+import { Stepper } from "@/components/features/stepper/Stepper";
 import { colors } from "@/styles/theme/foundations/colors";
 import { sizes, weight } from "@/styles/theme/foundations/font";
-import { Button, Flex, Heading } from "@chakra-ui/react"
+import { Button, Flex } from "@chakra-ui/react"
 import NextLink from 'next/link';
 import { usePathname, useRouter } from "next/navigation";
 
@@ -23,6 +24,7 @@ export const DesktopSidebar = () => {
             <Button as={NextLink} href={`/all-shows`} isActive={path === '/all-shows'} variant="link" >All shows</Button>
             <Button as={NextLink} href={`/top-rated`} isActive={path === '/top-rated'} variant="link" >Top rated</Button>
             <Button as={NextLink} href={`/my-profile`} isActive={path === '/my-profile'} variant="link" >My profile</Button>
+            <Stepper />
 
             <Button type="button" onClick={handleLogout} cursor='pointer' variant="link" mt='auto'>Log out</Button>
         </Flex>

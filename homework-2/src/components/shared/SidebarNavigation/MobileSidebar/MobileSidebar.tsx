@@ -1,5 +1,6 @@
 'use client'
 
+import { Stepper } from "@/components/features/stepper/Stepper"
 import { colors } from "@/styles/theme/foundations/colors"
 import { sizes, weight } from "@/styles/theme/foundations/font"
 import { HamburgerIcon } from "@chakra-ui/icons"
@@ -35,6 +36,7 @@ export const MobileSidebar = () => {
                     <Button as={NextLink} href={`/all-shows`} isActive={path === '/all-shows'} variant="link" >All shows</Button>
                     <Button as={NextLink} href={`/top-rated`} isActive={path === '/top-rated'} variant="link" >Top rated</Button>
                     <Button as={NextLink} href={`/my-profile`} isActive={path === '/my-profile'} variant="link" >My profile</Button>
+                    <Stepper />
                 </Flex>
             </DrawerBody>
   
