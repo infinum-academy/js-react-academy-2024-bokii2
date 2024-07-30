@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
 
 export const LoginForm = () => {
@@ -21,11 +22,14 @@ export const LoginForm = () => {
     const router = useRouter();
     const { trigger, isMutating } = useSWRMutation(swrKeys.login, mutator<ILoginForm>, {
         onSuccess: (data) => {
-            localStorage.setItem('authorization-header', JSON.stringify({
-                'client': data.authHeaders.client,
-                'access-token': data.authHeaders.token,
-                'uid': data.authHeaders.uid
-            }));
+            mutate(swrKeys.me, 
+                localStorage.setItem('authorization-header', JSON.stringify({
+                    'client': data.authHeaders.client,
+                    'access-token': data.authHeaders.token,
+                    'uid': data.authHeaders.uid
+                })), 
+                {revalidate: false}
+            );
             router.push('/all-shows')
         },
         onError: () => {
