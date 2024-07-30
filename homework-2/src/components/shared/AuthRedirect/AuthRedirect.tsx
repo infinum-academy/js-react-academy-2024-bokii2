@@ -20,11 +20,11 @@ export const AuthRedirect = ({ to, condition }: IAuthRedirectProps) => {
             return;
         }
 
-        if (!data && condition === 'loggedOut') {
+        if (data && condition === 'loggedIn') {
             router.push(to);
         }
 
-        if (data && condition === 'loggedIn') {
+        if (!data && condition === 'loggedOut') {
             router.push(to);
         }
     }, [data, isLoading, router, condition, to]);

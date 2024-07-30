@@ -47,7 +47,7 @@ export const RegisterForm = () => {
                 </Alert>
             )}
             {!registered && (
-                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' width={{base: '100%', sm:'500px'}} height='500px' onSubmit={handleSubmit(onRegister)}>
+                <chakra.form display='flex' flexDirection='column' backgroundColor='#381484' padding={10} borderRadius={15} gap={5} alignItems='center' justifyContent='center' width={{base: '100%', sm:'500px'}} height='500px' onSubmit={handleSubmit(onRegister)}>
                     <Header />
                     <FormControl>
                         <EmailInput isSub={isSubmitting} props={{...register('email', { required: 'Email is required' })}} errors={errors.email}/>
