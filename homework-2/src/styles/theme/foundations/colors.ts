@@ -4,4 +4,5 @@ export const colors = {
     darkpurple: '#1B004C',
     pink: '#FF2498',
     white: '#FFFFFF',
+    warningred: '#f84434',
 }

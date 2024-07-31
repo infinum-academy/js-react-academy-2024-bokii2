@@ -13,7 +13,7 @@ export default function Layout({
       <AuthRedirect to='/login' condition='loggedOut'/>
       <StepperContextProvider>
         <Flex direction={{base: 'column', md: 'row'}} minWidth='100%'>
-          <Box>
+          <Box height={{base: 'none', md: '100vh'}} position={{md: 'sticky'}} top={0}>
             <SidebarNavigation />
           </Box>
           <Box margin='auto'>

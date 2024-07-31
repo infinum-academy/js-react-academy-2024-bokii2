@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from "react"
 import { ShowDetails } from "../ShowDetails/ShowDetails"
 import { ShowReviewSection } from "../ShowReviewSection/ShowReviewSection"
 import { Flex } from "@chakra-ui/react"
@@ -9,7 +8,8 @@ import { useParams } from "next/navigation"
 import { swrKeys } from "@/fetchers/swrKeys"
 import { fetcher } from "@/fetchers/fetcher"
 import { IShow } from "@/typings/Show.type"
-import { mutator } from "@/fetchers/mutators"
+import { Spin } from "@/components/shared/Spinner/Spinner"
+import { Error } from "@/components/shared/Error/Error";
 
 interface IShowResp {
     show: IShow;
@@ -26,9 +26,9 @@ export const ShowContainer = () => {
         await mutate(swrKeys.showdetails(id));
     };
 
-    if (isLoading) return <div>loading...</div>
+    if (isLoading) return <Spin message="Loading the show..." />
     
-    if (error) return <div>failed to load</div>
+    if (error) return <Error />
 
     return (
         <Flex flexDirection='column' alignItems='flex-start'

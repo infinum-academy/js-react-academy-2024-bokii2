@@ -39,7 +39,7 @@ export const UpdateReview = ({review, refetchShowDetails}: IUpdateReviewResp) =>
 					<ModalHeader>Updating the review</ModalHeader>
 					<ModalCloseButton />
 
-					<ModalBody>
+					<ModalBody maxWidth='100%'>
                         <ReviewForm addShowReview={onUpdate} id={Number(review.id)} />
 					</ModalBody>
 				</ModalContent>

@@ -8,6 +8,7 @@ import { Flex, Text, Image, Box } from "@chakra-ui/react";
 import { useContext } from "react";
 import useSWR from "swr";
 import { StepperContext } from "../stepper/components/StepperContextProvider";
+import { Spin } from "@/components/shared/Spinner/Spinner";
 
 interface IMyprofile {
     user: IUser
@@ -17,7 +18,7 @@ export const Myprofile = () => {
     const {data} = useSWR(swrKeys.me, fetcher) as {data: IMyprofile};
     const { selectedShows } = useContext(StepperContext);
 
-    if (!data) return <div>Loading...</div>;
+    if (!data) return <Spin message="Loading the data..." />;
 
     return (
         <Flex direction='column' justifyContent='center' width='fit-content' gap={8} margin={5}>

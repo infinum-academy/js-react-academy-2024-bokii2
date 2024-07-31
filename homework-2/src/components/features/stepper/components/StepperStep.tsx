@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Image, Button } from "@chakra-ui/react"
+import { Box, Card, CardBody, Flex, Image } from "@chakra-ui/react"
 import { useContext } from "react";
 import { StepperContext } from "./StepperContextProvider";
 
@@ -10,19 +10,22 @@ export const StepperStep = () => {
     );
 
     return (
-        <Flex direction='column' gap={5} width='300px'>
+        <Flex wrap='wrap' gap={5} justifyContent='center'>
             {showsPerStep[currentStep]?.map((show) => {
                 const isSelected = selectedShows.find((s) => s.id === show.id);
                 return (
-                    <Box key={show.id} padding={1} backgroundColor={isSelected ? 'green' : 'gray'}>
-                        <Image alt={show.title} src={show.image_url} onClick={ 
-                            isSelected ? () => {
-                                setSelectedShows(selectedShows.filter((s) => s.id !== show.id))
-                            } : () => {
-                                setSelectedShows([...selectedShows, show])
-                            }
-                        }/>
-                    </Box>
+                    <Card key={show.id} backgroundColor={isSelected ? 'green' : 'gray'} width='150px' color='white' onClick={ 
+                        isSelected ? () => {
+                            setSelectedShows(selectedShows.filter((s) => s.id !== show.id))
+                        } : () => {
+                            setSelectedShows([...selectedShows, show])
+                        }
+                    }>
+                        <Image alt={show.title} borderTopRadius='inherit' src={show.image_url} />
+                        <CardBody>
+                            {show.title}
+                        </CardBody>
+                    </Card>
                 )
             })}
         </Flex>
